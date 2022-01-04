@@ -24,12 +24,13 @@ public class PlayerManager {
                 Player player4 = player;
                 break;
             default:
+                System.out.println("More players than 4 or less players than 1 registered, invalid input");
         }
     }
 
     public void createPlayer(String name, int balance, GUI_Car car) {
         GUI_Player GUIPlayer = new GUI_Player(name, balance,car);
         Player player = new Player(Setup.START_FIELD,GUIPlayer);
-        playersArrayList(Player player);
+        playersArrayList(player);
     }
 }
