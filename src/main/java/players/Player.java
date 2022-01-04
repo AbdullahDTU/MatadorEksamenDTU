@@ -8,7 +8,7 @@ public class Player extends PlayerManager {
 
     //Player name, ID, Balance
     private int fieldPosition;
-    private final GUI_Player GUIPlayer;
+    private GUI_Player GUIPlayer;
 
     protected Player(int startField, GUI_Player GUIPlayer) {
         this.fieldPosition = startField;
@@ -19,8 +19,13 @@ public class Player extends PlayerManager {
     public int getFieldPosition() {
         return fieldPosition;
     }
+
     public GUI_Player getGUIPlayer() {
         return GUIPlayer;
+    }
+
+    public void setGUIPlayer(GUI_Player GUIPlayer) {
+        this.GUIPlayer = GUIPlayer;
     }
 
     //Car array with the different cars and colors
