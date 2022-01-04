@@ -7,30 +7,51 @@ import mainGame.Setup;
 public class PlayerManager {
     //Playercount and Players list
 
-    int i = 1;
-    public void playersArrayList(Player player) {
+    private int i = 1;
+    Player player1;
+    Player player2;
+    Player player3;
+    Player player4;
+
+    public void playersListAdd(Player player) {
         i++;
         switch (i) {
             case 1:
-                Player player1 = player;
+                player1 = player;
                 break;
             case 2:
-                Player player2 = player;
+                player2 = player;
                 break;
             case 3:
-                Player player3 = player;
+                player3 = player;
                 break;
             case 4:
-                Player player4 = player;
+                player4 = player;
                 break;
             default:
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
         }
     }
 
+    public Player getPlayer(int index) {
+        switch (index) {
+            case 1:
+                return player1;
+            case 2:
+                return player2;
+            case 3:
+                return player3;
+            case 4:
+                return player4;
+            default:
+                System.out.println("More players than 4 or less players than 1 registered, invalid input");
+                return null;
+        }
+    }
+
     public void createPlayer(String name, int balance, GUI_Car car) {
         GUI_Player GUIPlayer = new GUI_Player(name, balance,car);
         Player player = new Player(Setup.START_FIELD,GUIPlayer);
-        playersArrayList(player);
+        playersListAdd(player);
     }
 }
