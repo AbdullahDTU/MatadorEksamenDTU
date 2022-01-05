@@ -11,7 +11,7 @@ public class Die {
         this.faceValue = FACE_VALUE;
     }
 
-    public void roll()
+    public void roll() // returns result (math.random method)
     {
         this.setFaceValue((int)(Math.random()*DIE_MAX_FACEVALUE)+1);
     }
@@ -23,7 +23,7 @@ public class Die {
     }
 
     public void setFaceValue(int faceValue){this.faceValue=faceValue;}
-    public String toString()  // returns a string 
+    public String toString()  // return faceValue in string form
     {
         return Integer.toString(faceValue);
     }
