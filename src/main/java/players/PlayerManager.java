@@ -7,7 +7,7 @@ import mainGame.Setup;
 public class PlayerManager {
     //Playercount and Players list
 
-    private int i = 1;
+    private int i = 0;
     Player player1;
     Player player2;
     Player player3;
@@ -16,14 +16,23 @@ public class PlayerManager {
     public void playersListAdd(Player player) {
         i++;
         switch (i) {
-            case 1 -> player1 = player;
-            case 2 -> player2 = player;
-            case 3 -> player3 = player;
-            case 4 -> player4 = player;
-            default -> System.out.println("More players than 4 or less players than 1 registered, invalid input");
+            case 1:
+                player1 = player;
+                Player[] players = {player1};
+            case 2:
+                player2 = player;
+                Player[] players2 = {player1, player2};
+            case 3:
+                player3 = player;
+                Player[] players3 = {player1, player2, player3};
+            case 4:
+                player4 = player;
+                Player[] players4 = {player1, player2, player3, player4};
+            default:
+                System.out.println("More players than 4 or less players than 1 registered, invalid input");
         }
     }
-    public Player getPlayer(int index) {
+    public Player getPlayer(int index, int indexArray) {
         switch (index) {
             case 1:
                 return player1;
