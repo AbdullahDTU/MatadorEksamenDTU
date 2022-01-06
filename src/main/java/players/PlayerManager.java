@@ -2,47 +2,64 @@ package players;
 
 import gui_fields.GUI_Car;
 import gui_fields.GUI_Player;
+import gui_main.GUI;
 import mainGame.Setup;
+
+import static mainGame.Setup.START_MONEY;
 
 public class PlayerManager {
     //Playercount and Players list
 
     private int i = 0;
+    Player player0;
     Player player1;
     Player player2;
     Player player3;
-    Player player4;
+    private GUI gui;
+
+    private int playerAmount;
+
+    public PlayerManager(GUI gui) {
+        this.gui = gui;
+    }
 
     public void playersListAdd(Player player) {
-        i++;
-        switch (i) {
+        switch (playerAmount) {
             case 1:
-                player1 = player;
-                Player[] players = {player1};
+                player0 = player;
+                Player[] players = {player0};
             case 2:
-                player2 = player;
-                Player[] players2 = {player1, player2};
+                player1 = player;
+                Player[] players2 = {player0, player1};
             case 3:
-                player3 = player;
-                Player[] players3 = {player1, player2, player3};
+                player2 = player;
+                Player[] players3 = {player0, player1, player2};
             case 4:
-                player4 = player;
-                Player[] players4 = {player1, player2, player3, player4};
+                player3 = player;
+                Player[] players4 = {player0, player1, player2, player3};
             default:
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
         }
     }
 
+    public void getsPlayerAmount() {
+        //Player inserts amount of players in the game between 2 and 4
+        playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", 2, 4);
+        System.out.println("Amount of players: " + playerAmount);
+
+        //String playerAmountStr = playerAmount.toString();
+    }
+
     public Player getPlayer(int index) {
         switch (index) {
             case 1:
-                return player1;
+                return player0;
             case 2:
-                return player2;
+                return player1;
             case 3:
-                return player3;
+                return player2;
             case 4:
-                return player4;
+                return player3;
             default:
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
                 //return null;
@@ -54,6 +71,29 @@ public class PlayerManager {
         GUI_Player GUIPlayer = new GUI_Player(name, balance, car);
         Player player = new Player(Setup.START_FIELD, GUIPlayer);
         playersListAdd(player);
+    }
+
+    public void makePlayer() {
+        //PlayerManager pM = new PlayerManager();
+
+        for (int i = 0; i <= playerAmount; i++) {
+            String playerName = "player" + i;
+            System.out.println("Player Name: " + playerName);
+
+            createPlayer(playerName, START_MONEY, Cars.getCars()[i]);
+
+        }
+
+        if (playerAmount == 2) {
+            Player[] players2 = {player0, player1};
+        } else if (playerAmount == 3) {
+            Player[] players2 = {player0, player1, player2};
+        } else if (playerAmount == 4) {
+            Player[] players2 = {player0, player1, player2, player3};
+        }
+
+        //Player[] players4 = {player0, player1, player2, player3};
+
     }
 
     public int getPlayerBalance(int index) {
