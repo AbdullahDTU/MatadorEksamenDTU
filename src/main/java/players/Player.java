@@ -5,7 +5,7 @@ import gui_main.GUI;
 
 import java.util.ArrayList;
 
-public class Player extends PlayerManager {
+public class Player {
 
     //Player name, ID, Balance
     private int fieldPosition;
