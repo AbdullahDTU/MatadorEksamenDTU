@@ -15,9 +15,12 @@ public class Setup {
     public static final int MIN_PLAYER = 2;
     public static final int MAX_PLAYER = 4;
 
-    private int playerAmount;
+    //public int playerAmount;
 
     private GUI gui;
+
+
+    PlayerManager pM = new PlayerManager(gui);
 
     public Setup(GUI gui) {
         this.gui = gui;
@@ -37,9 +40,8 @@ public class Setup {
 
     public void startSetupMethods() {
         welcomeMessage();
-        getPlayerAmount();
-        settingUpPlayers();
-        //setupPlayers();
+        pM.getsPlayerAmount();
+        pM.makePlayer();
     }
 
     public void welcomeMessage() {
@@ -47,28 +49,60 @@ public class Setup {
         gui.showMessage("Welcome to Monopoly Juniour");
     }
 
-    public void getPlayerAmount() {
+    /*
+    public void getsPlayerAmount() {
         //Player inserts amount of players in the game between 2 and 4
         playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", 2, 4);
         System.out.println("Amount of players: " + playerAmount);
+
+        //String playerAmountStr = playerAmount.toString();
     }
+
+     */
 
     public void settingUpPlayers() {
         //Setup setup = new Setup(gui);
-        setupPlayers();
-        PlayerManager playerManager = new PlayerManager();
-        System.out.println(playerManager.getPlayerName(2));
-        System.out.println(playerManager.getPlayerBalance(2));
+        //setupPlayers();
+        //PlayerManager pM = new PlayerManager();
+        System.out.println(pM.getPlayerName(2));
+        System.out.println(pM.getPlayerBalance(2));
     }
 
     public void setupPlayers() {
-        System.out.println("Amount of players: (setUpPlayers)" + playerAmount);
-        PlayerManager pM = new PlayerManager();
+        //System.out.println("Amount of players: (setUpPlayers)" + playerAmount);
+        PlayerManager pM = new PlayerManager(gui);
         pM.createPlayer("player1", START_MONEY, Cars.getCars()[0]);
         pM.createPlayer("player2", START_MONEY, Cars.getCars()[1]);
         pM.createPlayer("player3", START_MONEY, Cars.getCars()[2]);
         pM.createPlayer("player4", START_MONEY, Cars.getCars()[3]);
     }
+
+    /*
+    public void makePlayer() {
+        //PlayerManager pM = new PlayerManager();
+
+        for (int i = 0; i <= playerAmount; i++) {
+            String playerName = "player" + i;
+            System.out.println("Player Name: " + playerName);
+
+            pM.createPlayer(playerName, START_MONEY, Cars.getCars()[i]);
+
+        }
+
+        if (playerAmount == 2) {
+            Player[] players2 = {PlayerManager.player0, player1};
+        } else if (playerAmount == 3) {
+            Player[] players2 = {player0, player1, player2};
+        } else if (playerAmount == 4) {
+            Player[] players2 = {player0, player1, player2, player3};
+        }
+
+        //Player[] players4 = {player0, player1, player2, player3};
+
+    }
+
+     */
+
 
     /*
 
