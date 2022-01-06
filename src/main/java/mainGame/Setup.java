@@ -35,9 +35,11 @@ public class Setup {
      */
 
 
-    public void startSetupMethods(){
+    public void startSetupMethods() {
         welcomeMessage();
         getPlayerAmount();
+        settingUpPlayers();
+        //setupPlayers();
     }
 
     public void welcomeMessage() {
@@ -48,15 +50,24 @@ public class Setup {
     public void getPlayerAmount() {
         //Player inserts amount of players in the game between 2 and 4
         playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", 2, 4);
+        System.out.println("Amount of players: " + playerAmount);
+    }
 
+    public void settingUpPlayers() {
+        //Setup setup = new Setup(gui);
+        setupPlayers();
+        PlayerManager playerManager = new PlayerManager();
+        System.out.println(playerManager.getPlayerName(2));
+        System.out.println(playerManager.getPlayerBalance(2));
     }
 
     public void setupPlayers() {
+        System.out.println("Amount of players: (setUpPlayers)" + playerAmount);
         PlayerManager pM = new PlayerManager();
-        pM.createPlayer("player1",START_MONEY,Cars.getCars()[0]);
-        pM.createPlayer("player2",START_MONEY,Cars.getCars()[1]);
-        pM.createPlayer("player3",START_MONEY,Cars.getCars()[2]);
-        pM.createPlayer("player4",START_MONEY,Cars.getCars()[3]);
+        pM.createPlayer("player1", START_MONEY, Cars.getCars()[0]);
+        pM.createPlayer("player2", START_MONEY, Cars.getCars()[1]);
+        pM.createPlayer("player3", START_MONEY, Cars.getCars()[2]);
+        pM.createPlayer("player4", START_MONEY, Cars.getCars()[3]);
     }
 
     /*
@@ -96,10 +107,6 @@ public class Setup {
     }
     
      */
-
-
-
-
 
 
 }
