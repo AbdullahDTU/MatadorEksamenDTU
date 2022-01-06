@@ -1,6 +1,6 @@
 package dice;
 
-public class Die {
+public class Die extends Hand {
     private int faceValue;
 
     public static final int DIE_MAX_FACEVALUE = 6; // Maximum face value
