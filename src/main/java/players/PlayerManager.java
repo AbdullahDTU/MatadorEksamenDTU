@@ -23,6 +23,9 @@ public class PlayerManager {
         this.gui = gui;
     }
 
+    public PlayerManager() {
+    }
+
     public void playersListAdd(Player player) {
         switch (playerAmount) {
             case 1:
