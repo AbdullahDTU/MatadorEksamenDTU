@@ -20,11 +20,13 @@ public class Setup {
     private GUI gui;
 
 
-    PlayerManager pM = new PlayerManager(gui);
+    PlayerManager pM;
 
     public Setup(GUI gui) {
         this.gui = gui;
+        pM = new PlayerManager(gui);
     }
+
 
 
     /*
