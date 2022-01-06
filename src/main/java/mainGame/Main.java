@@ -10,8 +10,10 @@ public class Main {
         GUI gui = new GUI();
         //GameController gameController = new GameController(gui);
         Setup setup = new Setup();
+        Game game = new Game();
 
-        //Initializes and runs Board
+        //Initializes and runs Board + game
         setup.startSetupMethods();
+        game.initializeGame();
     }
 }
