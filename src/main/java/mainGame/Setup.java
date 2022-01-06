@@ -19,6 +19,11 @@ public class Setup {
 
     private GUI gui;
 
+    public Setup(GUI gui) {
+        this.gui = gui;
+    }
+
+
     /*
     Player player1 = new Player();
     Player player2 = new Player();
@@ -48,10 +53,10 @@ public class Setup {
 
     public void setupPlayers() {
         PlayerManager pM = new PlayerManager();
-        pM.createPlayer("player1",START_MONEY,Cars.getCars()[1]);
-        pM.createPlayer("player2",START_MONEY,Cars.getCars()[2]);
-        pM.createPlayer("player3",START_MONEY,Cars.getCars()[3]);
-        pM.createPlayer("player4",START_MONEY,Cars.getCars()[4]);
+        pM.createPlayer("player1",START_MONEY,Cars.getCars()[0]);
+        pM.createPlayer("player2",START_MONEY,Cars.getCars()[1]);
+        pM.createPlayer("player3",START_MONEY,Cars.getCars()[2]);
+        pM.createPlayer("player4",START_MONEY,Cars.getCars()[3]);
     }
 
     /*
