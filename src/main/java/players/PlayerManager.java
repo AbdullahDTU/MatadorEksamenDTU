@@ -32,6 +32,7 @@ public class PlayerManager {
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
         }
     }
+
     public Player getPlayer(int index) {
         switch (index) {
             case 1:
@@ -44,13 +45,14 @@ public class PlayerManager {
                 return player4;
             default:
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
-                return null;
+                //return null;
         }
+        return null;
     }
 
     public void createPlayer(String name, int balance, GUI_Car car) {
-        GUI_Player GUIPlayer = new GUI_Player(name, balance,car);
-        Player player = new Player(Setup.START_FIELD,GUIPlayer);
+        GUI_Player GUIPlayer = new GUI_Player(name, balance, car);
+        Player player = new Player(Setup.START_FIELD, GUIPlayer);
         playersListAdd(player);
     }
 
@@ -82,8 +84,9 @@ public class PlayerManager {
                 return getPlayer(4).getGUIPlayer().getName();
             default:
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
-                return null;
         }
+        return getPlayer(index).getGUIPlayer().getName();
+        //return getPlayerName(index);
     }
 
     public void setPlayerBalance(int index, int balance) {
