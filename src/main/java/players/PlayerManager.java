@@ -32,7 +32,7 @@ public class PlayerManager {
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
         }
     }
-    public Player getPlayer(int index, int indexArray) {
+    public Player getPlayer(int index) {
         switch (index) {
             case 1:
                 return player1;
@@ -53,6 +53,7 @@ public class PlayerManager {
         Player player = new Player(Setup.START_FIELD,GUIPlayer);
         playersListAdd(player);
     }
+
     public int getPlayerBalance(int index) {
         switch (index) {
             case 1:
@@ -66,6 +67,22 @@ public class PlayerManager {
             default:
                 System.out.println("More players than 4 or less players than 1 registered, invalid input");
                 return 0;
+        }
+    }
+
+    public String getPlayerName(int index) {
+        switch (index) {
+            case 1:
+                return getPlayer(1).getGUIPlayer().getName();
+            case 2:
+                return getPlayer(2).getGUIPlayer().getName();
+            case 3:
+                return getPlayer(3).getGUIPlayer().getName();
+            case 4:
+                return getPlayer(4).getGUIPlayer().getName();
+            default:
+                System.out.println("More players than 4 or less players than 1 registered, invalid input");
+                return null;
         }
     }
 

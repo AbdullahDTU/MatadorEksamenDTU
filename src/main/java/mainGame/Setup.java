@@ -2,6 +2,10 @@ package mainGame;
 
 import gui_main.GUI;
 import players.Player;
+import players.PlayerManager;
+import players.Cars;
+
+import java.util.Scanner;
 
 public class Setup {
     public static final int MAX_FIELDS = 40;
@@ -39,6 +43,15 @@ public class Setup {
     public void getPlayerAmount() {
         //Player inserts amount of players in the game between 2 and 4
         playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", 2, 4);
+
+    }
+
+    public void setupPlayers() {
+        PlayerManager pM = new PlayerManager();
+        pM.createPlayer("player1",START_MONEY,Cars.getCars()[1]);
+        pM.createPlayer("player2",START_MONEY,Cars.getCars()[2]);
+        pM.createPlayer("player3",START_MONEY,Cars.getCars()[3]);
+        pM.createPlayer("player4",START_MONEY,Cars.getCars()[4]);
     }
 
     /*
