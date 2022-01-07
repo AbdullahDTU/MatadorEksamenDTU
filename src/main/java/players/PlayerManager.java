@@ -20,7 +20,7 @@ public class PlayerManager {
     }
 
     public void makePlayer() {
-        for (int i = 0; i <= players.length; i++) {
+        for (int i = 0; i <= players.length - 1; i++) {
             String playerName = "player" + i;
             System.out.println("Player Name: " + playerName);
             GUI_Player GUIPlayer = new GUI_Player(playerName, START_MONEY, Cars.getCars()[i]);
