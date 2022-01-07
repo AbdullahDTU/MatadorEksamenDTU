@@ -12,8 +12,8 @@ public class PlayerManager {
 
     private GUI gui;
 
-    Player[] players;
 
+    Player[] players;
     public PlayerManager(GUI gui, int playerAmount) {
         this.gui = gui;
         this.players = new Player[playerAmount];

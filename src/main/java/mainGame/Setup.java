@@ -19,19 +19,19 @@ public class Setup {
 
     public Setup(GUI gui) {
         this.gui = gui;
-        pM = new PlayerManager(gui, getsPlayerAmount());
+        pM = new PlayerManager(gui, fetchPlayerAmount());
+
     }
 
-    private int getsPlayerAmount() {
+    private int fetchPlayerAmount() {
         int playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", 2, 4);
         System.out.println("Amount of players: " + playerAmount);
         return playerAmount;
-
     }
 
     public void startSetupMethods() {
         welcomeMessage();
-        getsPlayerAmount();
+        fetchPlayerAmount();
         pM.makePlayer();
     }
 
