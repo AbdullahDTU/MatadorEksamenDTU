@@ -6,6 +6,7 @@ import java.awt.*;
 
 public class Cars {
 
+    //Array of Cars with 4 different type of cars and patterns
     private static GUI_Car[] cars = new GUI_Car[]{
             //Regular car
             new GUI_Car(Color.GREEN,
@@ -33,6 +34,7 @@ public class Cars {
 
     };
 
+    //Method to return Cars from array
     public static GUI_Car[] getCars() {
         return cars;
     }

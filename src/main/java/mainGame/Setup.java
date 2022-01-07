@@ -6,15 +6,17 @@ import players.PlayerManager;
 import players.Cars;
 
 public class Setup {
-    //Constants
-    public static final int MAX_FIELDS = 40;
+    //Constants for creating players
+    public static final int MAX_FIELDS = 40; //TODO Unused can be removed?
     public static final int START_FIELD = 0;
     public static final int START_MONEY = 30000;
     public static final int MIN_PLAYER = 2;
     public static final int MAX_PLAYER = 4;
 
+    //Creating an instance of GUI
     private GUI gui;
 
+    //Creating instance of GUI
     PlayerManager pM;
 
     public Setup(GUI gui) {
@@ -22,29 +24,17 @@ public class Setup {
         pM = new PlayerManager(gui, getsPlayerAmount());
     }
 
+    //Method which asks the player for amount of players from 2-4 and returns the value to be used for adding players
     private int getsPlayerAmount() {
         int playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", MIN_PLAYER, MAX_PLAYER);
         System.out.println("Amount of players: " + playerAmount);
         return playerAmount;
-
     }
 
+    //Runs the methods which setsup the game
     public void startSetupMethods() {
-        welcomeMessage();
-        getsPlayerAmount();
+        //getsPlayerAmount();
         pM.makePlayer();
     }
 
-    public void welcomeMessage() {
-        //Welcome message
-        gui.showMessage("Welcome to Monopoly Juniour");
-    }
-
-    public void settingUpPlayers() {
-        //Setup setup = new Setup(gui);
-        //setupPlayers();
-        //PlayerManager pM = new PlayerManager();
-        System.out.println(pM.getPlayerName(2));
-        System.out.println(pM.getPlayerBalance(2));
-    }
 }

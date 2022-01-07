@@ -10,14 +10,5 @@ public class Game {
     public Game(GUI gui) {
         this.gui = gui;
     }
-/*
-    public void initializeGame() {
-        Setup setup = new Setup(gui);
-        setup.setupPlayers();
-        PlayerManager playerManager = new PlayerManager();
-        System.out.println(playerManager.getPlayerName(2));
-        System.out.println(playerManager.getPlayerBalance(2));
-    }
 
- */
 }
