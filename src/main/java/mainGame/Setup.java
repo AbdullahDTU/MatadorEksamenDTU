@@ -6,10 +6,10 @@ import players.PlayerManager;
 import players.Cars;
 
 public class Setup {
+    //Constants
     public static final int MAX_FIELDS = 40;
     public static final int START_FIELD = 0;
     public static final int START_MONEY = 30000;
-
     public static final int MIN_PLAYER = 2;
     public static final int MAX_PLAYER = 4;
 
@@ -23,7 +23,7 @@ public class Setup {
     }
 
     private int getsPlayerAmount() {
-        int playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", 2, 4);
+        int playerAmount = gui.getUserInteger("Select amount of players. Between 2-4 Players: ", MIN_PLAYER, MAX_PLAYER);
         System.out.println("Amount of players: " + playerAmount);
         return playerAmount;
 
