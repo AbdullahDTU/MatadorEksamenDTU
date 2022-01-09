@@ -1,9 +1,7 @@
 package mainGame;
 
 import gui_main.GUI;
-import players.Player;
 import players.PlayerManager;
-import players.Cars;
 
 public class Setup {
     //Constants for creating players
@@ -16,7 +14,7 @@ public class Setup {
     //Creating an instance of GUI
     private GUI gui;
 
-    //Creating instance of GUI
+    //Creating instance of PlayerManager
     PlayerManager pM;
 
     public Setup(GUI gui) {
@@ -33,7 +31,7 @@ public class Setup {
 
     //Runs the methods which setsup the game
     public void startSetupMethods() {
-        //getsPlayerAmount();
+        pM.getPlayerNames();
         pM.makePlayer();
     }
 

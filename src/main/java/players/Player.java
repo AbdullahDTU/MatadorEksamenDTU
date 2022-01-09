@@ -1,9 +1,6 @@
 package players;
 
 import gui_fields.GUI_Player;
-import gui_main.GUI;
-
-import java.util.ArrayList;
 
 public class Player {
 
@@ -28,7 +25,5 @@ public class Player {
     public void setGUIPlayer(GUI_Player GUIPlayer) {
         this.GUIPlayer = GUIPlayer;
     }
-
-    //Car array with the different cars and colors
 
 }
