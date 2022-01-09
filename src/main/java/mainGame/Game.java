@@ -14,8 +14,9 @@ public class Game {
 
     private boolean gameHasFinished = false;
 
-    public Game(GUI gui) {
+    public Game(GUI gui, PlayerManager pM) {
         this.gui = gui;
+        this.pM = pM;
     }
 
     protected void startGame() {

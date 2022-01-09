@@ -17,6 +17,14 @@ public class Setup {
     //Creating instance of PlayerManager
     PlayerManager pM;
 
+    public PlayerManager getpM() {
+        return pM;
+    }
+
+    public void setpM(PlayerManager pM) {
+        this.pM = pM;
+    }
+
     public Setup(GUI gui) {
         this.gui = gui;
         pM = new PlayerManager(gui, getsPlayerAmount());
