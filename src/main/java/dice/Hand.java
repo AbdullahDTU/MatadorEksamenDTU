@@ -19,6 +19,7 @@ public class Hand {
                 die1.roll();
                 die2.roll();
                 sum = die1.getFaceValue() + die2.getFaceValue();
+                System.out.println("Die sum:" + sum);
         }
 }
 
