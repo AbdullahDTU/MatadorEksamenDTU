@@ -11,7 +11,7 @@ public class PlayerManager {
     private GUI gui;
 
     //Arrays for player objects and player names
-    Player[] players;
+    public Player[] players;
     String[] playerNames;
     private String[] playerOrderText = {"first player's name", "second player's name", "third player's name", "fourth player's name"};
 

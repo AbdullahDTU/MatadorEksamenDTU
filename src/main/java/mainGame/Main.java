@@ -19,7 +19,7 @@ public class Main {
 
         //Initializes and runs Board + game
         setup.startSetupMethods();
-        //game.initializeGame();
+        game.startGame();
     }
 
 }
