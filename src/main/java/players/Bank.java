@@ -10,12 +10,12 @@ public class Bank {
     private GUI gui;
     PlayerManager playerManager;
 
-    Bank(GUI gui, PlayerManager playerManager) {
+    public Bank(GUI gui, PlayerManager playerManager) {
         this.gui = gui;
         this.playerManager = playerManager;
     }
 
-    public void changePlayerBalance(int index, int price) {
+    public void changePlayerBalance(PlayerManager playerManager, int index, int price) {
         int newBalance = playerManager.getPlayerBalance(index) + price;
         playerManager.setPlayerBalance(index, newBalance);
     }
@@ -26,14 +26,12 @@ public class Bank {
         int price = fieldPrice[placement];
         if (ownedFields[placement].isEmpty() && fieldPrice[placement] != 0)
             ownedFields[placement] = playerManager.getPlayerName(index);
-            changePlayerBalance(index, -price);
+            changePlayerBalance(playerManager, index, -price);
     }
 
-    public void passStartHandout(int index) {
-        changePlayerBalance(index, 4000);
+    public void passStartHandout(PlayerManager playerManager, int index) {
+        changePlayerBalance(playerManager,index, 4000);
     }
-
-
 
     public void  sellField(int index) {
         int selectedField;

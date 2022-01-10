@@ -6,6 +6,8 @@ import gui_fields.GUI_Player;
 import gui_main.GUI;
 import mainGame.Setup;
 
+import java.util.Arrays;
+
 import static mainGame.Setup.START_FIELD;
 import static mainGame.Setup.START_MONEY;
 
@@ -14,7 +16,7 @@ public class PlayerManager {
 
     //Arrays for player objects and player names
     public Player[] players;
-    String[] playerNames;
+    public String[] playerNames;
     private String[] playerOrderText = {"first player's name", "second player's name", "third player's name", "fourth player's name"};
 
     public PlayerManager(GUI gui, int playerAmount) {
@@ -50,6 +52,11 @@ public class PlayerManager {
 
     public int getPlayerBalance(int index) {
         return players[index].getGUIPlayer().getBalance();
+    }
+
+    public int getPlayerIndex(String name) {
+        int index = Arrays.asList(playerNames).indexOf(name);
+        return index;
     }
 
     public String getPlayerName(int index) {

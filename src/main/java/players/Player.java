@@ -24,6 +24,7 @@ public class Player {
         }
         if(addToFieldposition > Setup.MAX_FIELDS) {
             this.fieldPosition = fieldPosition - Setup.MAX_FIELDS;
+
         }
         if(addToFieldposition + fieldPosition >= Setup.MAX_FIELDS) {
             this.fieldPosition = fieldPosition - Setup.MAX_FIELDS + addToFieldposition;
@@ -32,6 +33,7 @@ public class Player {
             this.fieldPosition = addToFieldposition + fieldPosition;
         }
     }
+
 
     public int getFieldPosition() {
         return fieldPosition;
