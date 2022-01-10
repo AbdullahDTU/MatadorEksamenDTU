@@ -11,15 +11,12 @@ public class Hand {
                 sum = 0;
         }
 
-        public int getSum() {
-                return sum;
-        }
-
-        public void rollDice(){
+        public int rollDice(){
                 die1.roll();
                 die2.roll();
                 sum = die1.getFaceValue() + die2.getFaceValue();
                 System.out.println("Die sum:" + sum);
+                return sum;
         }
 }
 
