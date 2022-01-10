@@ -44,10 +44,11 @@ public class Game {
 
     public void goToNewPosition(Player player) {
         if (playerWishesToRollDice()) {
-            int roll = hand.rollDice();
+            int roll = hand.rollDice(gui);
             player.setFieldPosition(roll);
             GUI_Field field = gui.getFields()[player.getFieldPosition()];
             player.getGUIPlayer().getCar().setPosition(field);
         }
+
     }
 }

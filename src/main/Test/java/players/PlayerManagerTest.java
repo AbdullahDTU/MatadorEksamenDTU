@@ -6,6 +6,5 @@ import org.junit.jupiter.api.Test;
 class PlayerManagerTest {
 @Test
     public void testPlayerPosition(){
-
 }
 }

@@ -11,7 +11,7 @@ public class Main {
         GUI gui = new GUI(Board.getFields(), new Color(176, 234, 220));
 
         //Shows a welcome message at the start of the game
-        gui.showMessage("Welcome to Monopoly Juniour");
+        gui.showMessage("Welcome to Matador");
 
         //Initializing instance of Setup and Game with access to GUI
         Setup setup = new Setup(gui);
