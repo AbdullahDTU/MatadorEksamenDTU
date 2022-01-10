@@ -1,10 +1,12 @@
 package players;
 
 import gui_fields.GUI_Car;
+import gui_fields.GUI_Field;
 import gui_fields.GUI_Player;
 import gui_main.GUI;
 import mainGame.Setup;
 
+import static mainGame.Setup.START_FIELD;
 import static mainGame.Setup.START_MONEY;
 
 public class PlayerManager {
@@ -40,6 +42,9 @@ public class PlayerManager {
             System.out.println("Player Name: " + playerName);
             GUI_Player GUIPlayer = new GUI_Player(playerName, START_MONEY, Cars.getCars()[i]);
             this.players[i] = new Player(Setup.START_FIELD, GUIPlayer);
+            GUI_Field field = gui.getFields()[getPlayer(i).getFieldPosition()];
+            getPlayer(i).getGUIPlayer().getCar().setPosition(field);
+            gui.addPlayer(getPlayer(i).getGUIPlayer());
         }
     }
 

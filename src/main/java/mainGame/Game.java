@@ -1,6 +1,7 @@
 package mainGame;
 
 import dice.Hand;
+import gui_fields.GUI_Field;
 import gui_main.GUI;
 import players.Player;
 import players.PlayerManager;
@@ -11,6 +12,7 @@ public class Game {
 
     //Creating instance of PlayerManager
     PlayerManager pM;
+    Hand hand = new Hand();
 
     private boolean gameHasFinished = false;
 
@@ -35,15 +37,13 @@ public class Game {
 
     public void playRound() {
         for (Player player : this.pM.players) {
-
             if (playerWishesToRollDice()) {
-                //Roll the Dice
-                //Hand.rollDice();
+                int roll = hand.rollDice();
+                player.setFieldPosition(roll);
+                GUI_Field field = gui.getFields()[player.getFieldPosition()];
+                player.getGUIPlayer().getCar().setPosition(field);
             }
-
-
         }
-
     }
 
 }

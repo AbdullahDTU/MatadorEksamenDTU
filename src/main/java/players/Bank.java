@@ -29,6 +29,12 @@ public class Bank {
             changePlayerBalance(index, -price);
     }
 
+    public void passStartHandout(int index) {
+        changePlayerBalance(index, 4000);
+    }
+
+
+
     public void  sellField(int index) {
         int selectedField;
     }

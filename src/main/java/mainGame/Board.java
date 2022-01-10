@@ -98,4 +98,5 @@ public class Board {
     public static GUI_Field[] getFields() {
         return fields;
     }
+
 }

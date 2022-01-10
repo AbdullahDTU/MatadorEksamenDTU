@@ -1,6 +1,8 @@
 package players;
 
 import gui_fields.GUI_Player;
+import mainGame.Setup;
+import java.util.logging.Level;
 
 public class Player {
 
@@ -13,6 +15,15 @@ public class Player {
         this.GUIPlayer = GUIPlayer;
     }
 
+    public void setFieldPosition(int addToFieldposition) {
+        if(addToFieldposition < 0) {
+            return;
+        }
+        if(addToFieldposition > Setup.MAX_FIELDS) {
+            this.fieldPosition = fieldPosition - Setup.MAX_FIELDS;
+        }
+        this.fieldPosition = addToFieldposition + fieldPosition;
+    }
 
     public int getFieldPosition() {
         return fieldPosition;
