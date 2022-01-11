@@ -40,6 +40,19 @@ public class Game {
         return choice.equals("Roll");
     }
 
+    private void askWetherToBuyField(Player player, GUI gui) {
+        //Makes 2 pressable buttons called "Buy" and "Don´t buy"
+        String name = player.getGUIPlayer().getName();
+        int index = pM.getPlayerIndex(name);
+        String choice = gui.getUserButtonPressed("Buy the field?", "Buy", "Don´t buy");
+        if (choice.equals("Buy")) {
+            bank.buyField(pM, index, gui);
+        }
+        else if (choice.equals("Don´t buy")) {
+            return;
+        }
+    }
+
 
     public void playRound() {
         for (Player player : this.pM.players) {
@@ -52,12 +65,16 @@ public class Game {
             String name = player.getGUIPlayer().getName();
             int index = pM.getPlayerIndex(name);
             int roll = hand.rollDice(gui);
-            if (roll + player.getFieldPosition() > Setup.MAX_FIELDS) {
+            if (roll + player.getFieldPosition() >= Setup.MAX_FIELDS) {
                 bank.passStartHandout(pM, index);
             }
             player.setFieldPosition(roll);
             GUI_Field field = gui.getFields()[player.getFieldPosition()];
             player.getGUIPlayer().getCar().setPosition(field);
+            if(bank.isFieldOwnable(pM,index)) {
+                askWetherToBuyField(player, gui);
+            }
+            bank.payRent(pM, player, gui);
         }
     }
 }
