@@ -36,7 +36,7 @@ public class Game {
 
     private boolean playerWishesToRollDice(Player player) {
         //Makes a pressable button called "Roll the dice"
-        String choice = gui.getUserButtonPressed(player.getGUIPlayer().getName()+ " roll the dice:", "Roll");
+        String choice = gui.getUserButtonPressed(player.getGUIPlayer().getName() + " roll the dice:", "Roll");
         return choice.equals("Roll");
     }
 
@@ -47,8 +47,7 @@ public class Game {
         String choice = gui.getUserButtonPressed(player.getGUIPlayer().getName() + " buy the field?", "Buy", "Don´t buy");
         if (choice.equals("Buy")) {
             bank.buyField(pM, index, gui);
-        }
-        else if (choice.equals("Don´t buy")) {
+        } else if (choice.equals("Don´t buy")) {
             return;
         }
     }
@@ -57,28 +56,35 @@ public class Game {
     public void playRound() {
         for (Player player : this.pM.players) {
             goToNewPosition(player);
+
+            if (player.getGUIPlayer().getBalance() == 0) {
+                player.setPlayerAlive(false);
+            }
         }
     }
 
     public void goToNewPosition(Player player) {
-        if (playerWishesToRollDice(player)) {
-            String name = player.getGUIPlayer().getName();
-            int index = pM.getPlayerIndex(name);
-            int roll = hand.rollDice(gui);
-            if (roll + player.getFieldPosition() >= Setup.MAX_FIELDS) {
-                bank.passStartHandout(pM, index);
-            }
-            player.setFieldPosition(roll);
-            GUI_Field field = gui.getFields()[player.getFieldPosition()];
-            player.getGUIPlayer().getCar().setPosition(field);
-            if(bank.isFieldOwnable(pM,index)) {
-                askWetherToBuyField(player, gui);
-            }
+        if (player.isPlayerAlive() == true) {
 
-            bank.payRent(pM, player, gui, roll);
-            if(player.getGUIPlayer().getBalance() <= 0) {
-                bank.auctionField(pM, index, gui);
-            }
+            if (playerWishesToRollDice(player)) {
+                String name = player.getGUIPlayer().getName();
+                int index = pM.getPlayerIndex(name);
+                int roll = hand.rollDice(gui);
+                if (roll + player.getFieldPosition() >= Setup.MAX_FIELDS) {
+                    bank.passStartHandout(pM, index);
+                }
+                player.setFieldPosition(roll);
+                GUI_Field field = gui.getFields()[player.getFieldPosition()];
+                player.getGUIPlayer().getCar().setPosition(field);
+                if (bank.isFieldOwnable(pM, index)) {
+                    askWetherToBuyField(player, gui);
+                }
+
+                bank.payRent(pM, player, gui, roll);
+                if (player.getGUIPlayer().getBalance() <= 0) {
+                    bank.auctionField(pM, index, gui);
+                }
+            } else gui.showMessage(player.getGUIPlayer().getName() + " is out of the game");
         }
     }
 }
