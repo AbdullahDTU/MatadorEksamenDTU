@@ -74,7 +74,8 @@ public class Game {
             if(bank.isFieldOwnable(pM,index)) {
                 askWetherToBuyField(player, gui);
             }
-            bank.payRent(pM, player, gui);
+
+            bank.payRent(pM, player, gui, roll);
             if(player.getGUIPlayer().getBalance() <= 0) {
                 bank.auctionField(pM, index, gui);
             }

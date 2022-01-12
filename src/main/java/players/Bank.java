@@ -86,7 +86,7 @@ public class Bank {
     }
 
     // Method for player to pay rent for his owned fields
-    public void payRent(PlayerManager playerManager, Player player, GUI gui) {
+    public void payRent(PlayerManager playerManager, Player player, GUI gui, int sum) {
         int rent = fieldRent[player.getFieldPosition()];
         int custumorIndex = playerManager.getPlayerIndex(player.getGUIPlayer().getName());
         String recipientName = ownedFields[player.getFieldPosition()];
@@ -95,6 +95,10 @@ public class Bank {
         if (player.getFieldPosition() == 4) {
             changePlayerBalance(playerManager, custumorIndex, -player.getGUIPlayer().getBalance() / 10);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid 10% of your money in tax");
+        } else if (player.getFieldPosition() == 12 || player.getFieldPosition() == 28 && !ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName())) {
+            int rentSpecial = sum * 100;
+            makeTransaction(playerManager, custumorIndex, rentSpecial, recipientIndex);
+            gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of:" + rentSpecial + " kr." + " To player: " + recipientName);
         } else if (player.getFieldPosition() == 38) {
             changePlayerBalance(playerManager, custumorIndex, -2000);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid 2000 kr in tax");
