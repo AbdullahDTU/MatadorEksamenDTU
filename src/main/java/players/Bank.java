@@ -110,6 +110,6 @@ public class Bank {
 
     // Amount of money a player recieves when passing start
     public void passStartHandout(int index) {
-        changePlayerBalance(index, 4000);
+        changePlayerBalance(index, 3000);
     }
 }

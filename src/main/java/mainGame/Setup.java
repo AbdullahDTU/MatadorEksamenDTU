@@ -5,9 +5,9 @@ import players.PlayerManager;
 
 public class Setup {
     //Constants for creating players
-    public static final int MAX_FIELDS = 40; //TODO Unused can be removed?
+    public static final int MAX_FIELDS = 40;
     public static final int START_FIELD = 0;
-    public static final int START_MONEY = 30000;
+    public static final int START_MONEY = 20000;
     public static final int MIN_PLAYER = 2;
     public static final int MAX_PLAYER = 4;
 
