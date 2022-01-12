@@ -1,7 +1,11 @@
 package players;
 
+import gui_fields.GUI_Field;
+import gui_fields.GUI_Ownable;
 import gui_main.GUI;
 import players.PlayerManager;
+
+import java.awt.*;
 
 public class Bank {
 
@@ -43,6 +47,11 @@ public class Bank {
         ownedFields[placement] = playerManager.getPlayerName(playerIndex);
         changePlayerBalance(playerManager, playerIndex, -price);
         gui.showMessage(playerManager.getPlayerName(playerIndex) + " bought the field for: " + price + " Kr!");
+        GUI_Field field = gui.getFields()[placement];
+        GUI_Ownable ownable = (GUI_Ownable) field;
+        ownable.setOwnerName(playerManager.getPlayerName(playerIndex));
+        ownable.setBorder(playerManager.getGuiCar(playerIndex).getPrimaryColor(), Color.BLACK);
+
     }
 
 
