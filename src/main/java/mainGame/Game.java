@@ -75,6 +75,9 @@ public class Game {
                 askWetherToBuyField(player, gui);
             }
             bank.payRent(pM, player, gui);
+            if(player.getGUIPlayer().getBalance() <= 0) {
+                bank.auctionField(pM, index, gui);
+            }
         }
     }
 }

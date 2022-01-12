@@ -6,6 +6,7 @@ import gui_main.GUI;
 import players.PlayerManager;
 
 import java.awt.*;
+import java.util.Arrays;
 
 public class Bank {
 
@@ -51,9 +52,23 @@ public class Bank {
         GUI_Ownable ownable = (GUI_Ownable) field;
         ownable.setOwnerName(playerManager.getPlayerName(playerIndex));
         ownable.setBorder(playerManager.getGuiCar(playerIndex).getPrimaryColor(), Color.BLACK);
-
     }
 
+    public void auctionField(PlayerManager playerManager, int playerIndex, GUI gui) {
+        String name = playerManager.getPlayerName(playerIndex);
+        for (int i = 0; i < ownedFields.length && playerManager.getPlayerBalance(playerIndex) == 0; i++) {
+            if(ownedFields[i].equals(name)) {
+                ownedFields[i] = "";
+                int price = fieldPrice[i];
+                changePlayerBalance(playerManager, playerIndex, price/2);
+                GUI_Field field = gui.getFields()[i];
+                GUI_Ownable ownable = (GUI_Ownable) field;
+                ownable.setOwnerName(null);
+                gui.showMessage(playerManager.getPlayerName(playerIndex) + " had their field force-auctioned to avoid bankruptcy and recieved: " + price/2 + " Kr" + " for the field");
+                ownable.setBorder(null, null);
+            }
+        }
+    }
 
     public void payRent(PlayerManager playerManager, Player player, GUI gui) {
         int rent = fieldRent[player.getFieldPosition()];
@@ -75,9 +90,5 @@ public class Bank {
 
     public void passStartHandout(PlayerManager playerManager, int index) {
         changePlayerBalance(playerManager, index, 4000);
-    }
-
-    public void sellField(int index) {
-        int selectedField;
     }
 }
