@@ -20,12 +20,13 @@ public class Game {
 
     private boolean gameHasFinished = false;
 
+    Bank bank;
+
     public Game(GUI gui, PlayerManager pM) {
         this.gui = gui;
         this.pM = pM;
+        this.bank = new Bank(gui, pM);
     }
-
-    Bank bank = new Bank(gui, pM);
 
     protected void startGame() {
         //Do loop to constantly run the game while gameHasFinished is false
@@ -46,7 +47,7 @@ public class Game {
         int index = pM.getPlayerIndex(name);
         String choice = gui.getUserButtonPressed(player.getGUIPlayer().getName() + " buy the field?", "Buy", "Don´t buy");
         if (choice.equals("Buy")) {
-            bank.buyField(pM, index, gui);
+            bank.buyField(index, gui);
         } else if (choice.equals("Don´t buy")) {
             return;
         }
@@ -71,18 +72,18 @@ public class Game {
                 int index = pM.getPlayerIndex(name);
                 int roll = hand.rollDice(gui);
                 if (roll + player.getFieldPosition() >= Setup.MAX_FIELDS) {
-                    bank.passStartHandout(pM, index);
+                    bank.passStartHandout(index);
                 }
                 player.setFieldPosition(roll);
                 GUI_Field field = gui.getFields()[player.getFieldPosition()];
                 player.getGUIPlayer().getCar().setPosition(field);
-                if (bank.isFieldOwnable(pM, index)) {
+                if (bank.isFieldOwnable(index)) {
                     askWetherToBuyField(player, gui);
                 }
 
                 bank.payRent(pM, player, gui, roll);
                 if (player.getGUIPlayer().getBalance() <= 0) {
-                    bank.auctionField(pM, index, gui);
+                    bank.auctionField(index, gui);
                 }
             } else gui.showMessage(player.getGUIPlayer().getName() + " is out of the game");
         }
