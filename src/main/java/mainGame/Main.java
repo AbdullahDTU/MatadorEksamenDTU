@@ -11,11 +11,7 @@ public class Main {
         GUI gui = new GUI(Board.getFields() ,new Color(5, 154, 5));
 
         //Shows a welcome message at the start of the game
-<<<<<<< Updated upstream
         gui.showMessage("Welcome to Matador");
-=======
-        gui.showMessage("Welcome to Monopoly");
->>>>>>> Stashed changes
 
         //Initializing instance of Setup and Game with access to GUI
         Setup setup = new Setup(gui);
