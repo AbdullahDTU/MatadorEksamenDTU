@@ -55,13 +55,18 @@ public class Bank {
     public void buyField(PlayerManager playerManager, int playerIndex, GUI gui) {
         int placement = playerManager.getPlayer(playerIndex).getFieldPosition();
         int price = fieldPrice[placement];
-        ownedFields[placement] = playerManager.getPlayerName(playerIndex);
-        changePlayerBalance(playerManager, playerIndex, -price);
-        gui.showMessage(playerManager.getPlayerName(playerIndex) + " bought the field for: " + price + " Kr!");
-        GUI_Field field = gui.getFields()[placement];
-        GUI_Ownable ownable = (GUI_Ownable) field;
-        ownable.setOwnerName(playerManager.getPlayerName(playerIndex));
-        ownable.setBorder(playerManager.getGuiCar(playerIndex).getPrimaryColor(), Color.BLACK);
+        if (playerManager.getPlayerBalance(playerIndex) > price) {
+            ownedFields[placement] = playerManager.getPlayerName(playerIndex);
+            changePlayerBalance(playerManager, playerIndex, -price);
+            gui.showMessage(playerManager.getPlayerName(playerIndex) + " bought the field for: " + price + " Kr!");
+            GUI_Field field = gui.getFields()[placement];
+            GUI_Ownable ownable = (GUI_Ownable) field;
+            ownable.setOwnerName(playerManager.getPlayerName(playerIndex));
+            ownable.setBorder(playerManager.getGuiCar(playerIndex).getPrimaryColor(), Color.BLACK);
+        }
+        else {
+            gui.showMessage(playerManager.getPlayerName(playerIndex) + " unfortunately lack the funds to buy this field. Therefore the field was not bought.");
+        }
     }
 
     public void auctionField(PlayerManager playerManager, int playerIndex, GUI gui) {
