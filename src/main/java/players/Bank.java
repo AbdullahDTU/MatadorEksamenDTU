@@ -21,16 +21,26 @@ public class Bank {
         this.playerManager = playerManager;
     }
 
+    // Methods that changes the player balance
     public void changePlayerBalance(PlayerManager playerManager, int index, int price) {
         int newBalance = playerManager.getPlayerBalance(index) + price;
-        playerManager.setPlayerBalance(index, newBalance);
+
+        // If statement to make sure balance does not reach negative numbers
+        if (newBalance <= 0) {
+            playerManager.setPlayerBalance(index, 0);
+        } else {
+            playerManager.setPlayerBalance(index, newBalance);
+        }
+
     }
 
+    // Method to make transactions between players, used to pay rent from a player to the owner of field
     public void makeTransaction(PlayerManager playerManager, int custumorIndex, int money, int recipientIndex) {
         changePlayerBalance(playerManager, custumorIndex, -money);
         changePlayerBalance(playerManager, recipientIndex, money);
     }
 
+    // Checks if a field is owned and returns true or false
     public boolean isFieldOwnable(PlayerManager playerManager, int playerIndex) {
         int placement = playerManager.getPlayer(playerIndex).getFieldPosition();
         int price = fieldPrice[placement];
@@ -70,6 +80,7 @@ public class Bank {
         }
     }
 
+    // Method for player to pay rent for his owned fields
     public void payRent(PlayerManager playerManager, Player player, GUI gui) {
         int rent = fieldRent[player.getFieldPosition()];
         int custumorIndex = playerManager.getPlayerIndex(player.getGUIPlayer().getName());
@@ -88,6 +99,7 @@ public class Bank {
         }
     }
 
+    // Amount of money a player recieves when passing start
     public void passStartHandout(PlayerManager playerManager, int index) {
         changePlayerBalance(playerManager, index, 4000);
     }
