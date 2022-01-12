@@ -34,9 +34,9 @@ public class Game {
         } while (!gameHasFinished);
     }
 
-    private boolean playerWishesToRollDice() {
+    private boolean playerWishesToRollDice(Player player) {
         //Makes a pressable button called "Roll the dice"
-        String choice = gui.getUserButtonPressed("Roll the dice:", "Roll");
+        String choice = gui.getUserButtonPressed(player.getGUIPlayer().getName()+ " roll the dice:", "Roll");
         return choice.equals("Roll");
     }
 
@@ -44,7 +44,7 @@ public class Game {
         //Makes 2 pressable buttons called "Buy" and "Don´t buy"
         String name = player.getGUIPlayer().getName();
         int index = pM.getPlayerIndex(name);
-        String choice = gui.getUserButtonPressed("Buy the field?", "Buy", "Don´t buy");
+        String choice = gui.getUserButtonPressed(player.getGUIPlayer().getName() + " buy the field?", "Buy", "Don´t buy");
         if (choice.equals("Buy")) {
             bank.buyField(pM, index, gui);
         }
@@ -61,7 +61,7 @@ public class Game {
     }
 
     public void goToNewPosition(Player player) {
-        if (playerWishesToRollDice()) {
+        if (playerWishesToRollDice(player)) {
             String name = player.getGUIPlayer().getName();
             int index = pM.getPlayerIndex(name);
             int roll = hand.rollDice(gui);

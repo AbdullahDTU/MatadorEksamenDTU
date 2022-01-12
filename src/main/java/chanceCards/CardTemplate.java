@@ -1,8 +1,6 @@
 package chanceCards;
 
 import players.Bank;
-import players.Player;
-import players.PlayerManager;
 
 public class CardTemplate {
 
@@ -29,8 +27,6 @@ public class CardTemplate {
             default:
         }
     }
-
-
 
     //Constructing Chance cards
     CardTemplate fullStop = new CardTemplate(
@@ -102,8 +98,10 @@ public class CardTemplate {
 /*
     //Methods to call the action of the chance cards
     public void fullStopAction() {
-        bank.changePlayerBalance(bank.playerManager, int index, -1000);
+        bank.changePlayerBalance(bank.playerManager, index, -1000);
     }
-*/
+
+ */
+
 
 }
