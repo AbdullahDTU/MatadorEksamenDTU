@@ -9,7 +9,7 @@ public class Cars {
     //Array of Cars with 4 different type of cars and patterns
     private static GUI_Car[] cars = new GUI_Car[]{
             //Regular car
-            new GUI_Car(Color.GREEN,
+            new GUI_Car(Color.PINK,
                     Color.BLACK,
                     GUI_Car.Type.CAR,
                     GUI_Car.Pattern.HORIZONTAL_GRADIANT),
