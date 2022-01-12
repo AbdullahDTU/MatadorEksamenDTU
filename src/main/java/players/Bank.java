@@ -95,7 +95,7 @@ public class Bank {
         if (player.getFieldPosition() == 4) {
             changePlayerBalance(playerManager, custumorIndex, -player.getGUIPlayer().getBalance() / 10);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid 10% of your money in tax");
-        } else if (player.getFieldPosition() == 12 || player.getFieldPosition() == 28 && !ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName())) {
+        } else if (!ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName()) && (player.getFieldPosition() == 12 || player.getFieldPosition() == 28)) {
             int rentSpecial = sum * 100;
             makeTransaction(playerManager, custumorIndex, rentSpecial, recipientIndex);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of:" + rentSpecial + " kr." + " To player: " + recipientName);
