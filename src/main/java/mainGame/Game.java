@@ -10,6 +10,7 @@ import players.PlayerManager;
 public class Game {
 
     private GUI gui;
+    int roundsInJailTally = 0;
 
     //Creating instance of PlayerManager
     PlayerManager pM;
@@ -34,6 +35,16 @@ public class Game {
             this.playRound();
             roundsTally++;
         } while (!gameHasFinished);
+    }
+
+    private boolean playerLandedOnJail(Player player) {
+        if (player.getFieldPosition() == 30) {
+            String name = player.getGUIPlayer().getName();
+            gui.showMessage(name + " went to jail for " + Setup.STUCK_IN_JAIL_ROUNDS_MAX + " turns.");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private boolean playerWishesToRollDice(Player player) {
@@ -63,16 +74,30 @@ public class Game {
         return richestPlayer;
     }
 
+    private void getOutOfJail(Player player) {
+        player.setFieldPosition(0);
+        String name = player.getGUIPlayer().getName();
+        GUI_Field field = gui.getFields()[player.getFieldPosition()];
+        player.getGUIPlayer().getCar().setPosition(field);
+        roundsInJailTally = 0;
+        gui.showMessage("The player " + name + ", served his sentence and can begin moving again from Start.");
+    }
+
 
     public void playRound() {
         for (Player player : this.pM.players) {
             System.out.println("Rounds nr " + roundsTally);
-            boardActions(player);
-
+            if (roundsInJailTally == Setup.STUCK_IN_JAIL_ROUNDS_MAX && playerLandedOnJail(player)) {
+                getOutOfJail(player);
+            }
+            withExceptionsRunBoardActions(player);
+            if (playerLandedOnJail(player)) {
+                roundsInJailTally++;
+            }
             if (player.getGUIPlayer().getBalance() == 0) {
                 player.setPlayerAlive(false);
             }
-            if(roundsTally == 30) {
+            if (roundsTally == Setup.NUMBER_OF_TURNS) {
                 Player winningPlayer = compareBalances();
                 String name = winningPlayer.getGUIPlayer().getName();
                 int balance = winningPlayer.getGUIPlayer().getBalance();
@@ -95,40 +120,55 @@ public class Game {
         }
         if (tallyAlive == 1) {
             return playerAlive;
-        }
-        else {
+        } else {
             return null;
         }
     }
 
-    public void boardActions(Player player) {
-        if (player.isPlayerAlive()) {
+    public void boardActions(Player player, String name) {
+        int index = pM.getPlayerIndex(name);
+        int roll = hand.rollDice(gui);
+        if (roll + player.getFieldPosition() >= Setup.MAX_FIELDS) {
+            bank.passStartHandout(index);
+        }
+        player.addToFieldPosition(roll);
+        GUI_Field field = gui.getFields()[player.getFieldPosition()];
+        player.getGUIPlayer().getCar().setPosition(field);
+        if (bank.isFieldOwnable(index)) {
+            askWetherToBuyField(player, gui);
+        }
+        bank.payRent(pM, player, gui, roll);
+        if (player.getGUIPlayer().getBalance() <= 0) {
+            bank.auctionField(index, gui);
+        }
+    }
 
-            if (playerWishesToRollDice(player)) {
-                String name = player.getGUIPlayer().getName();
-                int index = pM.getPlayerIndex(name);
-                int roll = hand.rollDice(gui);
-                if (roll + player.getFieldPosition() >= Setup.MAX_FIELDS) {
-                    bank.passStartHandout(index);
-                }
-                player.setFieldPosition(roll);
-                GUI_Field field = gui.getFields()[player.getFieldPosition()];
-                player.getGUIPlayer().getCar().setPosition(field);
-                if (bank.isFieldOwnable(index)) {
-                    askWetherToBuyField(player, gui);
-                }
-
-                bank.payRent(pM, player, gui, roll);
-                if (player.getGUIPlayer().getBalance() <= 0) {
-                    bank.auctionField(index, gui);
-                }
-            } else gui.showMessage(player.getGUIPlayer().getName() + " is out of the game"); {
-                Player lastSurvivingPlayer = determineLastSurvivingPlayer();
-                if (lastSurvivingPlayer != null) {
-                    String name = lastSurvivingPlayer.getGUIPlayer().getName();
-                    gui.showMessage(name + "has won the game by being the last surviving player");
-                }
-                }
+    public void playerIsBankruptActions(Player player) {
+        gui.showMessage(player.getGUIPlayer().getName() + " is out of the game");
+        {
+            Player lastSurvivingPlayer = determineLastSurvivingPlayer();
+            if (lastSurvivingPlayer != null) {
+                String nameLastPlayer = lastSurvivingPlayer.getGUIPlayer().getName();
+                gui.showMessage(nameLastPlayer + "has won the game by being the last surviving player");
             }
         }
     }
+
+    public void withExceptionsRunBoardActions(Player player) {
+        String name = player.getGUIPlayer().getName();
+        if (player.isPlayerAlive()) {
+            if (!playerLandedOnJail(player)) {
+                if (playerWishesToRollDice(player)) {
+                    boardActions(player, name);
+                }
+            }
+            else {
+                gui.showMessage(name + " is in jail. Round skipped");
+            }
+        }
+        else {
+            playerIsBankruptActions(player);
+        }
+    }
+}
+
