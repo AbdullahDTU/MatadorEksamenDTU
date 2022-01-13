@@ -23,7 +23,7 @@ public class Player {
         this.isPlayerAlive = isPlayerAlive;
     }
 
-    public void setFieldPosition(int addToFieldposition) {
+    public void addToFieldPosition(int addToFieldposition) {
         if (addToFieldposition < 0) {
             return;
         }
@@ -36,6 +36,10 @@ public class Player {
         } else {
             this.fieldPosition = addToFieldposition + fieldPosition;
         }
+    }
+
+    public void setFieldPosition(int fieldPosition) {
+        this.fieldPosition = fieldPosition;
     }
 
     public boolean isPlayerAlive() {
