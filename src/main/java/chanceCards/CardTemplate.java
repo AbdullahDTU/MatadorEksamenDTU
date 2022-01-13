@@ -1,6 +1,7 @@
 package chanceCards;
 
 import players.Bank;
+import players.Player;
 
 public class CardTemplate {
 
@@ -20,7 +21,7 @@ public class CardTemplate {
     public void performCardAction() {
         switch (cardIndex) {
             case 1:
-                //fullStopAction();
+                fullStopAction();
                 break;
             case 2:
                 break;
@@ -220,15 +221,19 @@ public class CardTemplate {
             37);
 
 
-
-
-/*
-    //Methods to call the action of the chance cards
-    //public void fullStopAction() {
-      //  bank.changePlayerBalance(bank.playerManager, index, -1000);
-     //}
-
- */
-
+    // Methods to call the action of the chance cards
+    public void fullStopAction() {
+        //bank.changePlayerBalance(bank.playerManager, index, -1000);
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
