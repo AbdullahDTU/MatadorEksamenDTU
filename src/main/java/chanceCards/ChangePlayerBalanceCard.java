@@ -4,12 +4,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
-public class ChangePlayerBalance extends Card {
+public class ChangePlayerBalanceCard extends Card {
     private int price;
 
     // Super constructor to accept attributes from Bank and Card
-    public ChangePlayerBalance(Bank bank, String cardName, String cardDescription, PlayerManager playerManager, int price) {
-        super(bank, cardName, cardDescription, playerManager);
+    public ChangePlayerBalanceCard(Bank bank, Player player, PlayerManager playerManager, String cardName, String cardDescription, int price) {
+        super(bank, player, playerManager, cardName, cardDescription);
         this.price = price;
     }
 
