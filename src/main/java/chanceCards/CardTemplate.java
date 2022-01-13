@@ -7,29 +7,34 @@ import players.PlayerManager;
 public class CardTemplate {
     private Bank bank;
     private PlayerManager playerManager;
+    private Player player;
     private Card[] cards = new Card[5];
 
     //Constructor for Chance Cards
-    public CardTemplate(Bank bank, PlayerManager playerManager) {
+    public CardTemplate(Bank bank, Player player, PlayerManager playerManager) {
         this.bank = bank;
+        this.player = player;
         this.playerManager = playerManager;
         // Card that changes player balance
-        cards[0] = new ChangePlayerBalance(bank, "Full Stop",
-                "You have driven over a Full Stop, pay kr 1.000", playerManager, -1000);
-        
+        cards[0] = new ChangePlayerBalanceCard(bank, player, playerManager, " Full Stop", "You have driven over a full stop, pay kr. 1000", -1000);
+
         // Card that moves player to a specific position
-        cards[24] = new PlayerMoveCard(bank, "Go back",
-                "Move to start", playerManager, 0);
+        cards[24] = new PlayerMoveCard(bank,player,playerManager,"Go back","Move to start", 0);
+        int playerPosition = player.getFieldPosition();
+        cards[25] = new PlayerMoveCard(bank,player,playerManager,"Move forward","Move three squares forward", playerPosition + 3);
     }
+
 
     public Card[] getCardList() {
 
         return cards;
     }
 
+
 /*
     //Constructing Chance cards
-    CardTemplate fullStop = new CardTemplate(
+
+    X CardTemplate fullStop = new CardTemplate(
             "Full Stop",
             "You have driven over a Full Stop, pay kr 1.000",
             1);
@@ -147,12 +152,12 @@ public class CardTemplate {
             "You hold a family party and receive a subsidy from each partner of kr. 500",
             23);
 
-    CardTemplate go_back = new CardTemplate(
+    X CardTemplate go_back = new CardTemplate(
             "Go Back",
             "Move to START", // 2 cards
             24);
 
-    CardTemplate move_forward = new CardTemplate(
+    X CardTemplate move_forward = new CardTemplate(
             "Move Forward",
             "Move three squares forward",
             25);

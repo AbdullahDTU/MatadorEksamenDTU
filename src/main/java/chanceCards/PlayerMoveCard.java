@@ -7,8 +7,8 @@ import players.PlayerManager;
 public class PlayerMoveCard extends Card {
     private int newPlayerPosition;
 
-    public PlayerMoveCard(Bank bank, String cardName, String cardDescription, PlayerManager playerManager, int newPlayerPosition) {
-        super(bank, cardName, cardDescription, playerManager);
+    public PlayerMoveCard(Bank bank, Player player, PlayerManager playerManager, String cardName, String cardDescription, int newPlayerPosition) {
+        super(bank, player, playerManager, cardName, cardDescription);
         this.newPlayerPosition = newPlayerPosition;
     }
 
