@@ -2,33 +2,32 @@ package chanceCards;
 
 import players.Bank;
 import players.Player;
+import players.PlayerManager;
 
 public class CardTemplate {
-
-    private String chanceName;
-    private String chanceDescription;
-    private int cardIndex;
-
     private Bank bank;
+    private PlayerManager playerManager;
+    private Card[] cards = new Card[5];
 
     //Constructor for Chance Cards
-    public CardTemplate(String chanceName, String chanceDescription, int cardIndex) {
-        this.chanceName = chanceName;
-        this.chanceDescription = chanceDescription;
-        this.cardIndex = cardIndex;
+    public CardTemplate(Bank bank, PlayerManager playerManager) {
+        this.bank = bank;
+        this.playerManager = playerManager;
+        // Card that changes player balance
+        cards[0] = new ChangePlayerBalance(bank, "Full Stop",
+                "You have driven over a Full Stop, pay kr 1.000", playerManager, -1000);
+        
+        // Card that moves player to a specific position
+        cards[24] = new PlayerMoveCard(bank, "Go back",
+                "Move to start", playerManager, 0);
     }
 
-    public void performCardAction() {
-        switch (cardIndex) {
-            case 1:
-                fullStopAction();
-                break;
-            case 2:
-                break;
-            default:
-        }
+    public Card[] getCardList() {
+
+        return cards;
     }
 
+/*
     //Constructing Chance cards
     CardTemplate fullStop = new CardTemplate(
             "Full Stop",
@@ -219,13 +218,7 @@ public class CardTemplate {
             "Jail",
             "Go to jail, you do not collect kr .4.000 to pass the start", // 2 cards
             37);
-
-
-    // Methods to call the action of the chance cards
-    public void fullStopAction() {
-        //bank.changePlayerBalance(bank.playerManager, index, -1000);
-    }
-
+ */
 }
 
 
