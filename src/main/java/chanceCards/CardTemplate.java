@@ -8,7 +8,7 @@ public class CardTemplate {
     private Bank bank;
     private PlayerManager playerManager;
     private Player player;
-    private Card[] cards = new Card[5];
+    private Card[] cards = new Card[25];
 
     //Constructor for Chance Cards
     public CardTemplate(Bank bank, Player player, PlayerManager playerManager) {
@@ -16,12 +16,35 @@ public class CardTemplate {
         this.player = player;
         this.playerManager = playerManager;
         // Card that changes player balance
-        cards[0] = new ChangePlayerBalanceCard(bank, player, playerManager, " Full Stop", "You have driven over a full stop, pay kr. 1000", -1000);
+        cards[0] = new ChangePlayerBalanceCard(bank, player, playerManager, "Full Stop", "You have driven over a full stop, pay kr. 1000", -1000);
+        cards[1] = new ChangePlayerBalanceCard(bank, player, playerManager, "Garden", "The value of own breeding from the utility garden is now kr. 200 which you receive from the bank", 200);
+        cards[2] = new ChangePlayerBalanceCard(bank, player, playerManager, "Car Wash", "Pay for car wash and lubrication kr. 300", -300);
+        cards[3] = new ChangePlayerBalanceCard(bank, player, playerManager, "Delivery Box", "Pay kr. 200 for delivery of 2 boxes of beer", -200);
+        cards[4] = new ChangePlayerBalanceCard(bank, player, playerManager, "Car Repair", "Pay kr. 3.000 for repairing the car", -3000);
+        cards[5] = new ChangePlayerBalanceCard(bank, player, playerManager, "Car Repair", "Pay kr. 3.000 for repairing the car", -3000);
+        cards[6] = new ChangePlayerBalanceCard(bank, player, playerManager, "New Tires", "You have bought 4 new tires for your car, pay kr. 1.000", -1000);
+        cards[7] = new ChangePlayerBalanceCard(bank, player, playerManager, "Parking Fine", "You have received a parking fine, pay kr. 200 in fines", -200);
+        cards[8] = new ChangePlayerBalanceCard(bank, player, playerManager, "Car Insurance", "Pay the car insurance, kr. 1.000", -1000);
+        cards[9] = new ChangePlayerBalanceCard(bank, player, playerManager, "Cigarette Tax", "You have been abroad and bought too many cigarettes, pay kr. 200 in tax", -200);
+        cards[10] = new ChangePlayerBalanceCard(bank, player, playerManager, "Dental Bill", "Dental bill, pay kr. 2,000", -2000);
+        cards[11] = new ChangePlayerBalanceCard(bank, player, playerManager, "Lottery", "You have won the class lottery. Receive Kr. 500", 500);
+        cards[12] = new ChangePlayerBalanceCard(bank, player, playerManager, "Lottery", "You have won the class lottery. Receive Kr. 500", 500);
+        cards[13] = new ChangePlayerBalanceCard(bank, player, playerManager, "Dividend", "You will receive your share dividend. Receive kr. 1.000 from the bank", 1000);
+        cards[14] = new ChangePlayerBalanceCard(bank, player, playerManager, "Dividend", "You will receive your share dividend. Receive kr. 1.000 from the bank", 1000);
+        cards[15] = new ChangePlayerBalanceCard(bank, player, playerManager, "Dividend", "You will receive your share dividend. Receive kr. 1.000 from the bank", 1000);
+        cards[16] = new ChangePlayerBalanceCard(bank, player, playerManager, "Government Tax", "The government has remitted a quarterly tax. Withdraw kr. 3.000 from the bank", 3000);
+        cards[17] = new ChangePlayerBalanceCard(bank, player, playerManager, "Jackpot", "You have a row of eleven jackpot in tipping, receive kr. 1000", 1000);
+        cards[18] = new ChangePlayerBalanceCard(bank, player, playerManager, "Salary", "Due to the expensive time, you have received a salary increase, receive kr. 1.000.", 1000);
+        cards[19] = new ChangePlayerBalanceCard(bank, player, playerManager, "Growing Bond", "Your premium bond is growing. Receive 1000 kr. from the Bank", 1000);
+        cards[20] = new ChangePlayerBalanceCard(bank, player, playerManager, "Auction", "They have sold some old furniture at auction. Receive kr. 1.000 from the bank", 1000);
 
         // Card that moves player to a specific position
-        cards[24] = new PlayerMoveCard(bank,player,playerManager,"Go back","Move to start", 0);
+        cards[21] = new PlayerMoveCard(bank, player, playerManager, "Go back", "Move to start", 0);
+        cards[22] = new PlayerMoveCard(bank, player, playerManager, "Go back", "Move to start", 0);
         int playerPosition = player.getFieldPosition();
-        cards[25] = new PlayerMoveCard(bank,player,playerManager,"Move forward","Move three squares forward", playerPosition + 3);
+        cards[23] = new PlayerMoveCard(bank, player, playerManager, "Move forward", "Move three squares forward", playerPosition + 3);
+        cards[24] = new PlayerMoveCard(bank, player, playerManager, "Move back", "Move three squares back", playerPosition - 3);
+        cards[25] = new PlayerMoveCard(bank, player, playerManager, "Move back", "Move three squares back", playerPosition - 3);
     }
 
 
@@ -49,82 +72,82 @@ public class CardTemplate {
             "Property taxes have risen. The extra costs are kr. 800 per house, kr. 2.300 per hotel",
             3);
 
-    CardTemplate carWash = new CardTemplate(
+    X CardTemplate carWash = new CardTemplate(
             "Car Wash",
             "Pay for car wash and lubrication kr. 300",
             4);
 
-    CardTemplate deliveryBox = new CardTemplate(
+    X CardTemplate deliveryBox = new CardTemplate(
             "Delivery Box",
             "Pay kr. 200 for delivery of 2 boxes of beer",
             5);
 
-    CardTemplate carRepair = new CardTemplate(
+   X CardTemplate carRepair = new CardTemplate(
             "Car Repair",
             "Pay kr. 3.000 for repairing the car", // 2 cards
             6);
 
-    CardTemplate newTires = new CardTemplate(
+    X CardTemplate newTires = new CardTemplate(
             "New Tires",
             "You have bought 4 new tires for your car, pay kr. 1.000",
             7);
 
-    CardTemplate parkingFine = new CardTemplate(
+    X CardTemplate parkingFine = new CardTemplate(
             "Parking Fine",
             "You have received a parking fine, pay kr. 200 in fines",
             8);
 
-    CardTemplate carInsurance = new CardTemplate(
+    x CardTemplate carInsurance = new CardTemplate(
             "Car Insurance",
             "Pay the car insurance, kr. 1.000",
             9);
 
-    CardTemplate cigaretteTax = new CardTemplate(
+    X CardTemplate cigaretteTax = new CardTemplate(
             "Cigarette Tax",
             "You have been abroad and bought too many cigarettes, pay kr. 200 in tax",
             10);
 
-    CardTemplate dentalBill = new CardTemplate(
+    X CardTemplate dentalBill = new CardTemplate(
             "Dental Bill",
             "Dental bill, pay kr. 2,000",
             11);
 
-    CardTemplate lottery = new CardTemplate(
+    X CardTemplate lottery = new CardTemplate(
             "Lottery",
             "You have won the class lottery. Receive Kr. 500 ", // 2 cards
             12);
 
-    CardTemplate dividend = new CardTemplate(
+    X CardTemplate dividend = new CardTemplate(
             "Dividend",
             "You will receive your share dividend. Receive kr. 1.000 from the bank", // 3 cards
             13);
 
-    CardTemplate governmentTax = new CardTemplate(
+    X CardTemplate governmentTax = new CardTemplate(
             "Government Tax",
             "The government has remitted a quarterly tax. Withdraw kr. 3.000 from the bank",
             14);
 
-    CardTemplate jackPot = new CardTemplate(
+    X CardTemplate jackPot = new CardTemplate(
             "Jackpot",
             "You have a row of eleven jackpot in tipping, receive kr.1000",
             15);
 
-    CardTemplate salary = new CardTemplate(
+    X CardTemplate salary = new CardTemplate(
             "Salary",
             "Due to the expensive time, you have received a salary increase, receive kr. 1.000.",
             16);
 
-    CardTemplate growingBond = new CardTemplate(
+    X CardTemplate growingBond = new CardTemplate(
             "GrowingBond",
             "Your premium bond is growing. Receive 1000 kr. from the Bank", // 2 cards
             17);
 
-    CardTemplate auction = new CardTemplate(
+    X CardTemplate auction = new CardTemplate(
             "Auction",
             "They have sold some old furniture at auction. Receive kr. 1.000 from the bank",
             18);
 
-    CardTemplate garden = new CardTemplate(
+    X CardTemplate garden = new CardTemplate(
             "Garden",
             "The value of own breeding from the utility garden" +
                     " is now kr. 200 which you receive from the bank",
@@ -162,7 +185,7 @@ public class CardTemplate {
             "Move three squares forward",
             25);
 
-    CardTemplate move_back = new CardTemplate(
+    X CardTemplate move_back = new CardTemplate(
             "Move Back",
             "Move three squares back", // 2 cards
             26);
