@@ -7,8 +7,6 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
-import java.util.Arrays;
-
 public class Game {
 
     private GUI gui;
@@ -19,6 +17,7 @@ public class Game {
 
 
     private boolean gameHasFinished = false;
+    int roundsTally = 0;
 
     Bank bank;
 
@@ -28,10 +27,12 @@ public class Game {
         this.bank = new Bank(gui, pM);
     }
 
+
     protected void startGame() {
         //Do loop to constantly run the game while gameHasFinished is false
         do {
             this.playRound();
+            roundsTally++;
         } while (!gameHasFinished);
     }
 
@@ -53,19 +54,55 @@ public class Game {
         }
     }
 
+    private Player compareBalances() {
+        Player richestPlayer = this.pM.players[0];
+        for (Player player : this.pM.players)
+            if (player.getGUIPlayer().getBalance() > richestPlayer.getGUIPlayer().getBalance()) {
+                richestPlayer = player;
+            }
+        return richestPlayer;
+    }
+
 
     public void playRound() {
         for (Player player : this.pM.players) {
-            goToNewPosition(player);
+            System.out.println("Rounds nr " + roundsTally);
+            boardActions(player);
 
             if (player.getGUIPlayer().getBalance() == 0) {
                 player.setPlayerAlive(false);
             }
+            if(roundsTally == 30) {
+                Player winningPlayer = compareBalances();
+                String name = winningPlayer.getGUIPlayer().getName();
+                int balance = winningPlayer.getGUIPlayer().getBalance();
+                gui.showMessage(name + " has won the game by being the richest player at the end of the game with a balance of " + balance + " kr!");
+                gameHasFinished = true;
+                break;
+            }
         }
     }
 
-    public void goToNewPosition(Player player) {
-        if (player.isPlayerAlive() == true) {
+    private Player determineLastSurvivingPlayer() {
+        int i;
+        int tallyAlive = 0;
+        Player playerAlive = null;
+        for (i = 0; i == pM.players.length; i++) {
+            if (pM.players[i].isPlayerAlive()) {
+                tallyAlive++;
+                playerAlive = pM.players[i];
+            }
+        }
+        if (tallyAlive == 1) {
+            return playerAlive;
+        }
+        else {
+            return null;
+        }
+    }
+
+    public void boardActions(Player player) {
+        if (player.isPlayerAlive()) {
 
             if (playerWishesToRollDice(player)) {
                 String name = player.getGUIPlayer().getName();
@@ -85,7 +122,13 @@ public class Game {
                 if (player.getGUIPlayer().getBalance() <= 0) {
                     bank.auctionField(index, gui);
                 }
-            } else gui.showMessage(player.getGUIPlayer().getName() + " is out of the game");
+            } else gui.showMessage(player.getGUIPlayer().getName() + " is out of the game"); {
+                Player lastSurvivingPlayer = determineLastSurvivingPlayer();
+                if (lastSurvivingPlayer != null) {
+                    String name = lastSurvivingPlayer.getGUIPlayer().getName();
+                    gui.showMessage(name + "has won the game by being the last surviving player");
+                }
+                }
+            }
         }
     }
-}
