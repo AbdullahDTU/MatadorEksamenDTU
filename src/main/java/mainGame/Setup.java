@@ -10,6 +10,8 @@ public class Setup {
     public static final int START_MONEY = 20000;
     public static final int MIN_PLAYER = 2;
     public static final int MAX_PLAYER = 4;
+    public static final int NUMBER_OF_TURNS = 50;
+    public static final int STUCK_IN_JAIL_ROUNDS_MAX = 3;
 
     //Creating an instance of GUI
     private GUI gui;
