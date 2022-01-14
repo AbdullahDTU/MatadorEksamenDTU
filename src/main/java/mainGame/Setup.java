@@ -1,6 +1,9 @@
 package mainGame;
 
+import chanceCards.Deck;
 import gui_main.GUI;
+import players.Bank;
+import players.Player;
 import players.PlayerManager;
 
 public class Setup {
@@ -19,8 +22,21 @@ public class Setup {
     //Creating instance of PlayerManager
     PlayerManager pM;
 
+    //Creating instance of Bank
+    Bank bank;
+
+    //Creating instance of Player
+    Player player;
+
+    //Creating instance of Deck
+    Deck dK;
+
     public PlayerManager getpM() {
         return pM;
+    }
+
+    public Deck getdK() {
+        return dK;
     }
 
     public void setpM(PlayerManager pM) {
@@ -30,6 +46,7 @@ public class Setup {
     public Setup(GUI gui) {
         this.gui = gui;
         pM = new PlayerManager(gui, getsPlayerAmount());
+        dK = new Deck(gui, bank, pM, player);
     }
 
     //Method which asks the player for amount of players from 2-4 and returns the value to be used for adding players

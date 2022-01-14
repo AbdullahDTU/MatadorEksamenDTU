@@ -1,5 +1,6 @@
 package mainGame;
 
+import chanceCards.Deck;
 import dice.Hand;
 import gui_fields.GUI_Field;
 import gui_main.GUI;
@@ -14,6 +15,7 @@ public class Game {
 
     //Creating instance of PlayerManager
     PlayerManager pM;
+    Deck deck;
     Hand hand = new Hand();
 
 
@@ -22,10 +24,11 @@ public class Game {
 
     Bank bank;
 
-    public Game(GUI gui, PlayerManager pM) {
+    public Game(GUI gui, PlayerManager pM, Deck deck) {
         this.gui = gui;
         this.pM = pM;
         this.bank = new Bank(gui, pM);
+        this.deck = deck;
     }
 
 
@@ -44,6 +47,15 @@ public class Game {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public void checkForChanceField(GUI gui, Player player, PlayerManager playerManager){
+        if (player.getFieldPosition() == 2 || player.getFieldPosition() == 7 || player.getFieldPosition() == 17 || player.getFieldPosition() == 22 || player.getFieldPosition() == 33 || player.getFieldPosition() == 36) {
+            //2, 7, 17, 22, 33, 36 (Chance fields in array)
+            deck.createCard(gui, bank, player, playerManager); //TODO should maybe be in Setup?
+
+            deck.drawCard(player, gui);
         }
     }
 
@@ -94,6 +106,7 @@ public class Game {
             if (playerLandedOnJail(player)) {
                 roundsInJailTally++;
             }
+            checkForChanceField(gui, player, pM);
             if (player.getGUIPlayer().getBalance() == 0) {
                 player.setPlayerAlive(false);
             }
@@ -107,6 +120,8 @@ public class Game {
             }
         }
     }
+
+
 
     private Player determineLastSurvivingPlayer() {
         int i;

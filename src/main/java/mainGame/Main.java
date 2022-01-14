@@ -15,7 +15,7 @@ public class Main {
 
         //Initializing instance of Setup and Game with access to GUI
         Setup setup = new Setup(gui);
-        Game game = new Game(gui, setup.getpM());
+        Game game = new Game(gui, setup.getpM(), setup.getdK());
 
         //Initializes and runs Board + game
         setup.startSetupMethods();

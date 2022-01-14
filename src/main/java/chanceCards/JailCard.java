@@ -3,7 +3,7 @@ package chanceCards;
 import players.Bank;
 import players.Player;
 import players.PlayerManager;
-
+/*
 public class JailCard extends Card {
 
     // Super constructor to accept attributes from Bank and Card
@@ -16,4 +16,6 @@ public class JailCard extends Card {
 
     }
 }
+
+ */
 
