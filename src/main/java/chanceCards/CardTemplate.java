@@ -20,9 +20,9 @@ public class CardTemplate {
         this.playerManager = playerManager;
         // Card that changes player balance
         cards[0] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Full Stop", "You have driven over a full stop, pay kr. 1000", -1000);
+        cards[1] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Garden", "The value of own breeding from the utility garden is now kr. 200 which you receive from the bank", 200);
         cards[2] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Car Wash", "Pay for car wash and lubrication kr. 300", -300);
         cards[3] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Delivery Box", "Pay kr. 200 for delivery of 2 boxes of beer", -200);
-        cards[1] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Garden", "The value of own breeding from the utility garden is now kr. 200 which you receive from the bank", 200);
         cards[4] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Car Repair", "Pay kr. 3.000 for repairing the car", -3000);
         cards[5] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "Car Repair", "Pay kr. 3.000 for repairing the car", -3000);
         cards[6] = new ChangePlayerBalanceCard(gui, bank, player, playerManager, "New Tires", "You have bought 4 new tires for your car, pay kr. 1.000", -1000);
