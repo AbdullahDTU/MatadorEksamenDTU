@@ -10,8 +10,8 @@ public class Board {
     //Constructing fields of type Street, Chance, Jail and Parking
     // Field Name, Field Subtext, Field Description, Rent.
     private static final GUI_Field field1 = new GUI_Start(
-            "START", "Collect kr. 4.000",
-            "Collect kr. 4000 everytime you pass START", new Color(255, 0, 0), Color.BLACK);
+            "START", "Collect kr. 3.000",
+            "Collect kr. 3000 everytime you pass START", new Color(255, 0, 0), Color.BLACK);
     private static final GUI_Field field2 = new GUI_Street(
             "Rødovrevej",
             "kr. 1.200",

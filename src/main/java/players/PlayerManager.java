@@ -43,7 +43,7 @@ public class PlayerManager {
             String playerName = playerNames[i];
             System.out.println("Player Name: " + playerName);
             GUI_Player GUIPlayer = new GUI_Player(playerName, START_MONEY, Cars.getCars()[i]);
-            this.players[i] = new Player(Setup.START_FIELD, GUIPlayer);
+            this.players[i] = new Player(Setup.START_FIELD, GUIPlayer, true);
             GUI_Field field = gui.getFields()[getPlayer(i).getFieldPosition()];
             getPlayer(i).getGUIPlayer().getCar().setPosition(field);
             gui.addPlayer(getPlayer(i).getGUIPlayer());

@@ -6,6 +6,7 @@ import gui_main.GUI;
 import players.PlayerManager;
 
 import java.awt.*;
+import java.util.Arrays;
 
 public class Bank {
 
@@ -20,17 +21,27 @@ public class Bank {
         this.playerManager = playerManager;
     }
 
-    public void changePlayerBalance(PlayerManager playerManager, int index, int price) {
+    // Methods that changes the player balance
+    public void changePlayerBalance(int index, int price) {
         int newBalance = playerManager.getPlayerBalance(index) + price;
-        playerManager.setPlayerBalance(index, newBalance);
+
+        // If statement to make sure balance does not reach negative numbers
+        if (newBalance <= 0) {
+            playerManager.setPlayerBalance(index, 0);
+        } else {
+            playerManager.setPlayerBalance(index, newBalance);
+        }
+
     }
 
-    public void makeTransaction(PlayerManager playerManager, int custumorIndex, int money, int recipientIndex) {
-        changePlayerBalance(playerManager, custumorIndex, -money);
-        changePlayerBalance(playerManager, recipientIndex, money);
+    // Method to make transactions between players, used to pay rent from a player to the owner of field
+    public void makeTransaction(int custumorIndex, int money, int recipientIndex) {
+        changePlayerBalance(custumorIndex, -money);
+        changePlayerBalance(recipientIndex, money);
     }
 
-    public boolean isFieldOwnable(PlayerManager playerManager, int playerIndex) {
+    // Checks if a field is owned and returns true or false
+    public boolean isFieldOwnable(int playerIndex) {
         int placement = playerManager.getPlayer(playerIndex).getFieldPosition();
         int price = fieldPrice[placement];
         if (ownedFields[placement].isEmpty() && fieldPrice[placement] != 0) {
@@ -41,43 +52,64 @@ public class Bank {
     }
 
     // Can buy field player is standing on if the field has a price and the field is not already owned
-    public void buyField(PlayerManager playerManager, int playerIndex, GUI gui) {
+    public void buyField(int playerIndex, GUI gui) {
         int placement = playerManager.getPlayer(playerIndex).getFieldPosition();
         int price = fieldPrice[placement];
-        ownedFields[placement] = playerManager.getPlayerName(playerIndex);
-        changePlayerBalance(playerManager, playerIndex, -price);
-        gui.showMessage(playerManager.getPlayerName(playerIndex) + " bought the field for: " + price + " Kr!");
-        GUI_Field field = gui.getFields()[placement];
-        GUI_Ownable ownable = (GUI_Ownable) field;
-        ownable.setOwnerName(playerManager.getPlayerName(playerIndex));
-        ownable.setBorder(playerManager.getGuiCar(playerIndex).getPrimaryColor(), Color.BLACK);
-
+        if (playerManager.getPlayerBalance(playerIndex) > price) {
+            ownedFields[placement] = playerManager.getPlayerName(playerIndex);
+            changePlayerBalance(playerIndex, -price);
+            gui.showMessage(playerManager.getPlayerName(playerIndex) + " bought the field for: " + price + " Kr!");
+            GUI_Field field = gui.getFields()[placement];
+            GUI_Ownable ownable = (GUI_Ownable) field;
+            ownable.setOwnerName(playerManager.getPlayerName(playerIndex));
+            ownable.setBorder(playerManager.getGuiCar(playerIndex).getPrimaryColor(), Color.BLACK);
+        }
+        else {
+            gui.showMessage(playerManager.getPlayerName(playerIndex) + " unfortunately lack the funds to buy this field. Therefore the field was not bought.");
+        }
     }
 
+    public void auctionField(int playerIndex, GUI gui) {
+        String name = playerManager.getPlayerName(playerIndex);
+        for (int i = 0; i < ownedFields.length && playerManager.getPlayerBalance(playerIndex) == 0; i++) {
+            if(ownedFields[i].equals(name)) {
+                ownedFields[i] = "";
+                int price = fieldPrice[i];
+                changePlayerBalance(playerIndex, price/2);
+                GUI_Field field = gui.getFields()[i];
+                GUI_Ownable ownable = (GUI_Ownable) field;
+                ownable.setOwnerName(null);
+                gui.showMessage(playerManager.getPlayerName(playerIndex) + " had their field force-auctioned to avoid bankruptcy and recieved: " + price/2 + " Kr" + " for the field");
+                ownable.setBorder(null, null);
+            }
+        }
+    }
 
-    public void payRent(PlayerManager playerManager, Player player, GUI gui) {
+    // Method for player to pay rent for his owned fields
+    public void payRent(PlayerManager playerManager, Player player, GUI gui, int sum) {
         int rent = fieldRent[player.getFieldPosition()];
         int custumorIndex = playerManager.getPlayerIndex(player.getGUIPlayer().getName());
         String recipientName = ownedFields[player.getFieldPosition()];
         int recipientIndex = playerManager.getPlayerIndex(recipientName);
 
         if (player.getFieldPosition() == 4) {
-            changePlayerBalance(playerManager, custumorIndex, -player.getGUIPlayer().getBalance() / 10);
+            changePlayerBalance(custumorIndex, -player.getGUIPlayer().getBalance() / 10);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid 10% of your money in tax");
+        } else if (!ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName()) && (player.getFieldPosition() == 12 || player.getFieldPosition() == 28)) {
+            int rentSpecial = sum * 100;
+            makeTransaction(custumorIndex, rentSpecial, recipientIndex);
+            gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of:" + rentSpecial + " kr." + " To player: " + recipientName);
         } else if (player.getFieldPosition() == 38) {
-            changePlayerBalance(playerManager, custumorIndex, -2000);
+            changePlayerBalance(custumorIndex, -2000);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid 2000 kr in tax");
         } else if (!ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName())) {
-            makeTransaction(playerManager, custumorIndex, rent, recipientIndex);
+            makeTransaction(custumorIndex, rent, recipientIndex);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of:" + rent + " kr." + " To player: " + recipientName);
         }
     }
 
-    public void passStartHandout(PlayerManager playerManager, int index) {
-        changePlayerBalance(playerManager, index, 4000);
-    }
-
-    public void sellField(int index) {
-        int selectedField;
+    // Amount of money a player recieves when passing start
+    public void passStartHandout(int index) {
+        changePlayerBalance(index, 3000);
     }
 }
