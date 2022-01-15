@@ -4,6 +4,12 @@ import gui_main.GUI;
 
 import java.awt.*;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Main {
 
     public static void main(String[] args) {
@@ -15,7 +21,7 @@ public class Main {
 
         //Initializing instance of Setup and Game with access to GUI
         Setup setup = new Setup(gui);
-        Game game = new Game(gui, setup.getpM());
+        Game game = new Game(gui, setup.getpM(), setup.getdK());
 
         //Initializes and runs Board + game
         setup.startSetupMethods();

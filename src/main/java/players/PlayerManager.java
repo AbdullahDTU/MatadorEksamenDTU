@@ -8,16 +8,21 @@ import mainGame.Setup;
 
 import java.util.Arrays;
 
-import static mainGame.Setup.START_FIELD;
 import static mainGame.Setup.START_MONEY;
 
+/**
+ *
+ *
+ *
+ */
+
 public class PlayerManager {
-    private GUI gui;
+    private final GUI gui;
 
     //Arrays for player objects and player names
     public Player[] players;
     public String[] playerNames;
-    private String[] playerOrderText = {"first player's name", "second player's name", "third player's name", "fourth player's name"};
+    private final String[] playerOrderText = {"first player's name", "second player's name", "third player's name", "fourth player's name"};
 
     public PlayerManager(GUI gui, int playerAmount) {
         this.gui = gui;
@@ -28,25 +33,24 @@ public class PlayerManager {
     public void getPlayerNames() {
         //For loop to add each inserted player name into the game
         for (int currentPlayer = 0; currentPlayer < players.length; currentPlayer++) {
-            while (true) {
                 String playerName = gui.getUserString("Enter the " + playerOrderText[currentPlayer]);
-                this.playerNames[currentPlayer] = new String(playerName);
-
-                break;
+                this.playerNames[currentPlayer] = playerName;
             }
         }
-    }
 
     //Creates the players from the given player amount and names
     public void makePlayer() {
         for (int i = 0; i <= players.length - 1; i++) {
-            String playerName = playerNames[i];
-            System.out.println("Player Name: " + playerName);
-            GUI_Player GUIPlayer = new GUI_Player(playerName, START_MONEY, Cars.getCars()[i]);
-            this.players[i] = new Player(Setup.START_FIELD, GUIPlayer, true);
-            GUI_Field field = gui.getFields()[getPlayer(i).getFieldPosition()];
-            getPlayer(i).getGUIPlayer().getCar().setPosition(field);
-            gui.addPlayer(getPlayer(i).getGUIPlayer());
+            while (true) {
+                String playerName = playerNames[i];
+                System.out.println("Player Name: " + playerName);
+                GUI_Player GUIPlayer = new GUI_Player(playerName, START_MONEY, Cars.getCars()[i]);
+                this.players[i] = new Player(Setup.START_FIELD, GUIPlayer, true);
+                GUI_Field field = gui.getFields()[getPlayer(i).getFieldPosition()];
+                getPlayer(i).getGUIPlayer().getCar().setPosition(field);
+                gui.addPlayer(getPlayer(i).getGUIPlayer());
+                break;
+            }
         }
     }
 
