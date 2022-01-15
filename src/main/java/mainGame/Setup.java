@@ -6,6 +6,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Setup {
     //Constants for creating players
     public static final int MAX_FIELDS = 40;
@@ -17,7 +23,7 @@ public class Setup {
     public static final int STUCK_IN_JAIL_ROUNDS_MAX = 3;
 
     //Creating an instance of GUI
-    private GUI gui;
+    private final GUI gui;
 
     //Creating instance of PlayerManager
     PlayerManager pM;

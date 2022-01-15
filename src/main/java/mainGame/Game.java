@@ -8,6 +8,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Game {
 
     private GUI gui;
@@ -121,8 +127,6 @@ public class Game {
         }
     }
 
-
-
     private Player determineLastSurvivingPlayer() {
         int i;
         int tallyAlive = 0;
@@ -152,6 +156,7 @@ public class Game {
         if (bank.isFieldOwnable(index)) {
             askWetherToBuyField(player, gui);
         }
+        bank.buyHouses(index, gui);
         bank.payRent(pM, player, gui, roll);
         if (player.getGUIPlayer().getBalance() <= 0) {
             bank.auctionField(index, gui);
