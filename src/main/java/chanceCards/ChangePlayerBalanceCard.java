@@ -5,6 +5,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
+/**
+ *
+ *
+ *
+ */
+
 public class ChangePlayerBalanceCard extends Card {
     private int price;
 

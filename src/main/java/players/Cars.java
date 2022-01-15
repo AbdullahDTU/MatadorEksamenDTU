@@ -4,6 +4,12 @@ import gui_fields.GUI_Car;
 
 import java.awt.*;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Cars {
 
     //Array of Cars with 4 different type of cars and patterns

@@ -1,6 +1,11 @@
 package dice;
 import gui_main.GUI;
 
+/**
+ *
+ *
+ *
+ */
 
 public class Hand {
         // Create object die1 and die2

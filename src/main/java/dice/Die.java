@@ -1,5 +1,11 @@
 package dice;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Die  {
     private int faceValue;
 

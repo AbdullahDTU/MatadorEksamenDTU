@@ -5,6 +5,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
+/**
+ *
+ *
+ *
+ */
+
 public class CardTemplate {
     private GUI gui;
     private Bank bank;

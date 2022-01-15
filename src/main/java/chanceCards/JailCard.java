@@ -1,5 +1,11 @@
 package chanceCards;
 
+/**
+ *
+ *
+ *
+ */
+
 import players.Bank;
 import players.Player;
 import players.PlayerManager;

@@ -8,6 +8,12 @@ import java.util.logging.Level;
 
 import players.Bank;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Player {
 
     //Player name, ID, Balance

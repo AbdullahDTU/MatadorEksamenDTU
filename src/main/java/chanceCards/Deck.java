@@ -5,6 +5,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Deck {
     private GUI gui;
     private Bank bank;

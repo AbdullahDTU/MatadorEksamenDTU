@@ -6,6 +6,12 @@ import gui_resources.Attrs;
 
 import java.awt.*;
 
+/**
+ *
+ *
+ *
+ */
+
 public class Board {
     //Constructing fields of type Street, Chance, Jail and Parking
     // Field Name, Field Subtext, Field Description, Rent.

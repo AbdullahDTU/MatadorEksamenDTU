@@ -6,6 +6,12 @@ import players.Bank;
 import players.Player;
 import players.PlayerManager;
 
+/**
+ *
+ *
+ *
+ */
+
 public class PlayerMoveCard extends Card {
     private int newPlayerPosition;
 
