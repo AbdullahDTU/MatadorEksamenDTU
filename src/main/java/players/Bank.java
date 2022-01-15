@@ -99,7 +99,7 @@ public class Bank {
 
     public void buyHouses(int playerIndex, GUI gui) {
         int placement = playerManager.getPlayer(playerIndex).getFieldPosition();
-        int price = fieldPrice[placement] / 5;
+        int price = fieldPrice[placement] / 4;
         int fieldRentConstant = getFieldRentConstant(placement);
         int balance = playerManager.getPlayerBalance(playerIndex);
         String name = playerManager.getPlayerName(playerIndex);
