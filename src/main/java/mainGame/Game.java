@@ -17,7 +17,7 @@ import players.PlayerManager;
 public class Game {
 
     private GUI gui;
-    int roundsInJailTally = 0;
+    int[] roundsInJailTally = {0,0,0,0};
 
     //Creating instance of PlayerManager
     PlayerManager pM;
@@ -26,7 +26,7 @@ public class Game {
 
 
     private boolean gameHasFinished = false;
-    int roundsTally = 0;
+    private int roundsTally = 0;
 
     Bank bank;
 
@@ -36,7 +36,6 @@ public class Game {
         this.bank = new Bank(gui, pM);
         this.deck = deck;
     }
-
 
     protected void startGame() {
         //Do loop to constantly run the game while gameHasFinished is false
@@ -49,7 +48,7 @@ public class Game {
     private boolean playerLandedOnJail(Player player) {
         if (player.getFieldPosition() == 30) {
             String name = player.getGUIPlayer().getName();
-            gui.showMessage(name + " went to jail for " + Setup.STUCK_IN_JAIL_ROUNDS_MAX + " turns.");
+            int playerIndex = pM.getPlayerIndex(name);
             return true;
         } else {
             return false;
@@ -97,7 +96,8 @@ public class Game {
         String name = player.getGUIPlayer().getName();
         GUI_Field field = gui.getFields()[player.getFieldPosition()];
         player.getGUIPlayer().getCar().setPosition(field);
-        roundsInJailTally = 0;
+        int playerIndex = pM.getPlayerIndex(name);
+        roundsInJailTally[playerIndex] = 0;
         gui.showMessage("The player " + name + ", served his sentence and can begin moving again from Start.");
     }
 
@@ -105,22 +105,24 @@ public class Game {
     public void playRound() {
         for (Player player : this.pM.players) {
             System.out.println("Rounds nr " + roundsTally);
-            if (roundsInJailTally == Setup.STUCK_IN_JAIL_ROUNDS_MAX && playerLandedOnJail(player)) {
+            String name = player.getGUIPlayer().getName();
+            int playerIndex = pM.getPlayerIndex(name);
+            if (roundsInJailTally[playerIndex] == Setup.STUCK_IN_JAIL_ROUNDS_MAX) {
                 getOutOfJail(player);
+            }
+            if (player.getGUIPlayer().getBalance() == 0) {
+                bank.auctionField(pM.getPlayerIndex(name), gui);
             }
             withExceptionsRunBoardActions(player);
             if (playerLandedOnJail(player)) {
-                roundsInJailTally++;
+                roundsInJailTally[playerIndex] = roundsInJailTally[playerIndex] + 1;
             }
             checkForChanceField(gui, player, pM);
-            if (player.getGUIPlayer().getBalance() == 0) {
-                player.setPlayerAlive(false);
-            }
             if (roundsTally == Setup.NUMBER_OF_TURNS) {
                 Player winningPlayer = compareBalances();
-                String name = winningPlayer.getGUIPlayer().getName();
+                String nameWinner = winningPlayer.getGUIPlayer().getName();
                 int balance = winningPlayer.getGUIPlayer().getBalance();
-                gui.showMessage(name + " has won the game by being the richest player at the end of the game with a balance of " + balance + " kr!");
+                gui.showMessage(nameWinner + " has won the game by being the richest player at the end of the game with a balance of " + balance + " kr!");
                 gameHasFinished = true;
                 break;
             }
@@ -158,9 +160,6 @@ public class Game {
         }
         bank.buyHouses(index, gui);
         bank.payRent(pM, player, gui, roll);
-        if (player.getGUIPlayer().getBalance() <= 0) {
-            bank.auctionField(index, gui);
-        }
     }
 
     public void playerIsBankruptActions(Player player) {
@@ -176,14 +175,20 @@ public class Game {
 
     public void withExceptionsRunBoardActions(Player player) {
         String name = player.getGUIPlayer().getName();
+        int playerIndex = pM.getPlayerIndex(name);
+        if (player.getGUIPlayer().getBalance() == 0) {
+            player.setPlayerAlive(false); }
         if (player.isPlayerAlive()) {
             if (!playerLandedOnJail(player)) {
                 if (playerWishesToRollDice(player)) {
                     boardActions(player, name);
+                    if(playerLandedOnJail(player)) {
+                        gui.showMessage(name + " has landed on jail you will now be stuck here for: " + Setup.STUCK_IN_JAIL_ROUNDS_MAX + " rounds.");
+                    }
                 }
             }
             else {
-                gui.showMessage(name + " is in jail. Round skipped");
+                gui.showMessage(name + " Is in jail for: " + (Setup.STUCK_IN_JAIL_ROUNDS_MAX - roundsInJailTally[playerIndex]) + " turns.");
             }
         }
         else {
