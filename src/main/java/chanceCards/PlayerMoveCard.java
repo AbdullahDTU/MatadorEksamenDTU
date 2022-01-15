@@ -20,14 +20,6 @@ public class PlayerMoveCard extends Card {
         this.newPlayerPosition = newPlayerPosition;
     }
 
-    /*
-    @Override
-    void drawCard(Player player) {
-        player.addToFieldPosition(newPlayerPosition);
-    }
-
-     */
-
     @Override
     void drawCard(Player player, GUI gui) {
         player.setFieldPosition(newPlayerPosition);
