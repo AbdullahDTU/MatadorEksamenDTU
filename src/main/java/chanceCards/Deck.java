@@ -7,8 +7,6 @@ import players.PlayerManager;
 
 /**
  *
- *
- *
  */
 
 public class Deck {
@@ -36,16 +34,17 @@ public class Deck {
 
     // Chance field calls this method to draw cards
     public void drawCard(Player player, GUI gui) {
+        // Randomly selects a Chance Cards from the Deck
+        index = (int) ((Math.random() * deck.length) + 1);
         Card currentCard = deck[index];
-        currentCard.drawCard(player, gui);
-        System.out.println("Current Card Description: " + currentCard.cardDescription);
-        gui.showMessage(currentCard.cardDescription);
-        if (index == deck.length) {
-            index = 0;
-        } else {
-            index++;
-        }
 
+        // Runs the method of the chosen card
+        currentCard.drawCard(player, gui);
+        gui.showMessage(currentCard.cardDescription);
+
+        // Debugging to see which Card is chosen, Name, Description and index of the card in the cardlist
+        System.out.println("Chosen Card: " + currentCard.cardName + " which has index nr: " + index);
+        System.out.println("Current Card Description: " + currentCard.cardDescription);
     }
 
 }

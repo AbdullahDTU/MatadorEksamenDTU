@@ -166,7 +166,7 @@ public class Board {
     private static final GUI_Field field31 = new GUI_Jail(
             "default",
             "Jail",
-            "Go to Jail!",
+            "Now in Jail!",
             "JAIL_DESCRIPTION", new Color(0, 0, 0), Color.WHITE);
     private static final GUI_Field field32 = new GUI_Street(
             "Amagertorv",
