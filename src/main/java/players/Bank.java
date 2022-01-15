@@ -164,9 +164,13 @@ public class Bank {
                 changePlayerBalance(playerIndex, price/2);
                 GUI_Field field = gui.getFields()[i];
                 GUI_Ownable ownable = (GUI_Ownable) field;
+                GUI_Street street = (GUI_Street) field;
                 ownable.setOwnerName(null);
                 gui.showMessage(playerManager.getPlayerName(playerIndex) + " had their field force-auctioned to avoid bankruptcy and recieved: " + price/2 + " Kr" + " for the field");
                 ownable.setBorder(null, null);
+                fieldPrice[i] = FIELD_PRICE[i];
+                fieldRent[i] = FIELD_RENT[i];
+                street.setHouses(0);
             }
         }
     }
@@ -184,13 +188,13 @@ public class Bank {
         } else if (!ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName()) && (player.getFieldPosition() == 12 || player.getFieldPosition() == 28)) {
             int rentSpecial = sum * 100;
             makeTransaction(custumorIndex, rentSpecial, recipientIndex);
-            gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of:" + rentSpecial + " kr." + " To player: " + recipientName);
+            gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of: " + rentSpecial + " kr." + " To player: " + recipientName);
         } else if (player.getFieldPosition() == 38) {
             changePlayerBalance(custumorIndex, -2000);
             gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid 2000 kr in tax");
         } else if (!ownedFields[player.getFieldPosition()].isEmpty() && !ownedFields[player.getFieldPosition()].equals(player.getGUIPlayer().getName())) {
             makeTransaction(custumorIndex, rent, recipientIndex);
-            gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of:" + rent + " kr." + " To player: " + recipientName);
+            gui.showMessage(playerManager.getPlayerName(custumorIndex) + " paid a rent of: " + rent + " kr." + " To player: " + recipientName);
         }
     }
 
