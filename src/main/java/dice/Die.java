@@ -4,7 +4,7 @@ public class Die  {
     private int faceValue;
 
     public static final int DIE_MAX_FACEVALUE = 6; // Maximum face value
-    public static final int FACE_VALUE = 1; //Dice Face Value
+    public static final int FACE_VALUE = 1; //Dice Min Face Value
 
     public Die(int faceValue){this.faceValue = faceValue;}
     public Die() {
