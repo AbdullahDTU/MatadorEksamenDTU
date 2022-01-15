@@ -106,7 +106,7 @@ public class Bank {
         GUI_Field field = gui.getFields()[placement];
         if (field instanceof GUI_Street) {
             GUI_Street street = (GUI_Street) field;
-            if (playerManager.playerNames[playerIndex].equals(name) && housesCount[placement] != 3) {
+            if (ownedFields[placement].equals(name) && housesCount[placement] != 3) {
                 String chosenHouseCount = gui.getUserSelection(
                         "Choose the number of houses you want to buy you can have a maximum of 3 and you have: " + housesCount[placement] + " .It will cost: " + price,
                         "0", "1", "2", "3");
@@ -120,7 +120,7 @@ public class Bank {
                             setFieldRent(fieldRentConstant * (housesCount[placement] + 1), placement);
                             setFieldPrice(price + getFieldPrice(placement), placement);
                             changePlayerBalance(playerIndex, -price);
-                            gui.showMessage(name + ", has bought a house: " + price + " kr.");
+                            gui.showMessage(name + ", has bought a house for: " + price + " kr.");
                             break;
                         } else {
                             gui.showMessage(name + ", you either have 3 houses already or don´t have the funds to buy a house");
@@ -132,7 +132,7 @@ public class Bank {
                             setFieldRent(fieldRentConstant * ((housesCount[placement] + 1) * 4), placement);
                             setFieldPrice(price * 2 + getFieldPrice(placement), placement);
                             changePlayerBalance(playerIndex, -price * 2);
-                            gui.showMessage(name + ", has bought 2 houses"  + (price * 2) + " kr.");
+                            gui.showMessage(name + ", has bought 2 houses for: "  + (price * 2) + " kr.");
                             break;
                         } else {
                             gui.showMessage(name + ", you either have at least 2 houses already or don´t have the funds to buy 2 houses ");
