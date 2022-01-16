@@ -25,16 +25,10 @@ public class Setup {
     //Creating an instance of GUI
     private final GUI gui;
 
-    //Creating instance of PlayerManager
+    // Creating Instances of GUI, bank, player and deck
     PlayerManager pM;
-
-    //Creating instance of Bank
     Bank bank;
-
-    //Creating instance of Player
     Player player;
-
-    //Creating instance of Deck
     Deck dK;
 
     public PlayerManager getpM() {
@@ -45,10 +39,7 @@ public class Setup {
         return dK;
     }
 
-    public void setpM(PlayerManager pM) {
-        this.pM = pM;
-    }
-
+    // Constructor of type Setup that takes input from GUI
     public Setup(GUI gui) {
         this.gui = gui;
         pM = new PlayerManager(gui, getsPlayerAmount());

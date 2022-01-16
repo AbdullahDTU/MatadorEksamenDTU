@@ -6,8 +6,6 @@ import java.awt.*;
 
 /**
  *
- *
- *
  */
 
 public class Cars {
@@ -44,6 +42,5 @@ public class Cars {
     public static GUI_Car[] getCars() {
         return cars;
     }
-
 
 }

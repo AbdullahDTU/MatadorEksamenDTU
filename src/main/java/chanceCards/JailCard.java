@@ -19,6 +19,7 @@ public class JailCard extends Card {
         super(gui, bank, player, playerManager, cardName, cardDescription);
     }
 
+    // Sends the player to jail
     @Override
     void drawCard(Player player, GUI gui) {
         player.setFieldPosition(30);
