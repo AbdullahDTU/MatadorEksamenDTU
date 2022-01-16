@@ -7,8 +7,8 @@ package dice;
  */
 
 public class Die  {
+    // Variables for the Die's face value and max roll
     private int faceValue;
-
     public static final int DIE_MAX_FACEVALUE = 6; // Maximum face value
     public static final int FACE_VALUE = 1; //Dice Min Face Value
 
@@ -17,7 +17,8 @@ public class Die  {
         this.faceValue = FACE_VALUE;
     }
 
-    public void roll() // returns result (math.random method)
+    // Sets face value using math.random
+    public void roll()
     {
         this.setFaceValue((int)(Math.random()*DIE_MAX_FACEVALUE)+1);
     }
