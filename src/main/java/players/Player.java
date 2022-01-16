@@ -5,9 +5,7 @@ import gui_main.GUI;
 import mainGame.Setup;
 
 /**
- *
- *
- *
+ * The Player Class constructs players with fieldposition and an alive boolean
  */
 
 public class Player {

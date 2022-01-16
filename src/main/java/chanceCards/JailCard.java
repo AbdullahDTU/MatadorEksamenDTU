@@ -1,9 +1,7 @@
 package chanceCards;
 
 /**
- *
- *
- *
+ * Jail Card sends the player to jail
  */
 
 import gui_fields.GUI_Field;

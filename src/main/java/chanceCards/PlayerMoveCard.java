@@ -7,9 +7,7 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- *
- *
- *
+ * PlayerMoveCard moves the player the amount of squares or to a specific position that is decided by the drawn chance card
  */
 
 public class PlayerMoveCard extends Card {

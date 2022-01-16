@@ -5,7 +5,7 @@ import gui_fields.GUI_Car;
 import java.awt.*;
 
 /**
- *
+ * A simple array with type Cars that is used to construct the players
  */
 
 public class Cars {

@@ -5,7 +5,7 @@ import gui_main.GUI;
 import java.awt.*;
 
 /**
- *
+ * The Main class initializes the game by creating the GUI, running the Setup and Game
  */
 
 public class Main {

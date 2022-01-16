@@ -5,9 +5,7 @@ import gui_fields.*;
 import java.awt.*;
 
 /**
- *
- *
- *
+ * The Board class includes an array of all the fields in the board which is given as input to the GUI at the start of the game
  */
 
 public class Board {

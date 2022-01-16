@@ -6,7 +6,7 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- * Abstract class that serves to create different types of card method actions
+ * Abstract class that serves to create different types of chance cards and their method actions
  */
 
 abstract class Card {
