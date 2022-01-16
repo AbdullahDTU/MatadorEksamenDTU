@@ -8,9 +8,7 @@ import gui_main.GUI;
 import java.awt.*;
 
 /**
- *
- *
- *
+ * The bank class controls all transactions done in the game
  */
 
 public class Bank {

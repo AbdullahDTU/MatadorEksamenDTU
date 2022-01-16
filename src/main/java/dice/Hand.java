@@ -2,9 +2,7 @@ package dice;
 import gui_main.GUI;
 
 /**
- *
- *
- *
+ * The Hand Class constructs two die objects that are used in the RollDice method
  */
 
 public class Hand {

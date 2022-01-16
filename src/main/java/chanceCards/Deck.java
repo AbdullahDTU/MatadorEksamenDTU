@@ -6,7 +6,8 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- *
+ * The Deck class creates an array of type Cards, where a card is randomly selected and its action performecd
+ * once a player lands on a chance field
  */
 
 public class Deck {

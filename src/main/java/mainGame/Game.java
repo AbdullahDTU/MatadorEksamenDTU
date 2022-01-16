@@ -9,7 +9,7 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- *
+ * The Game class runs the playable part of the game that the player can interact with
  */
 
 public class Game {

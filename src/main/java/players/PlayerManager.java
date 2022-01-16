@@ -11,9 +11,7 @@ import java.util.Arrays;
 import static mainGame.Setup.START_MONEY;
 
 /**
- *
- *
- *
+ * PlayerManager controls the player related attributes and constructs the players
  */
 
 public class PlayerManager {

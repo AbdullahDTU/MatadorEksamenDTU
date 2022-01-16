@@ -1,9 +1,7 @@
 package dice;
 
 /**
- *
- *
- *
+ * Die Class creates the die objects to be used in the Hand Class
  */
 
 public class Die  {

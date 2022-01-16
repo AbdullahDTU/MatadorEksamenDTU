@@ -6,7 +6,7 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- *
+ * CardTemplate creates an array of Chance Cards which are then given as input to Deck
  */
 
 public class CardTemplate {

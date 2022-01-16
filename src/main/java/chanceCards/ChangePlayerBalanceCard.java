@@ -6,9 +6,7 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- *
- *
- *
+ * ChangePlayerBalanceCard changes the player's balance according to the chance card drawn
  */
 
 public class ChangePlayerBalanceCard extends Card {

@@ -7,9 +7,7 @@ import players.Player;
 import players.PlayerManager;
 
 /**
- *
- *
- *
+ * The Setup class sets up the game with amount of players and creating players
  */
 
 public class Setup {
