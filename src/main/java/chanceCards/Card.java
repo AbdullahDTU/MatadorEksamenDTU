@@ -17,7 +17,7 @@ abstract class Card {
     protected Player player;
     protected PlayerManager playerManager;
 
-    // Constuctor to create cards that
+    // Constuctor to create chance cards
     public Card(GUI gui, Bank bank, Player player, PlayerManager playerManager, String cardName, String cardDescription) {
         this.gui = gui;
         this.bank = bank;
