@@ -14,14 +14,14 @@ public class Hand {
         private int sum;
         private GUI gui;
 
-        // die1 and die2 is given a value
+        // Creating Two diece
         public Hand(){
                 die1 = new Die();
                 die2 = new Die();
                 sum = 0;
         }
 
-        // Methode for rollDice
+        // Rolls the dice and returns the sum
         public int rollDice(GUI gui){
                 die1.roll();
                 die2.roll();

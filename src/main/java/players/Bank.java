@@ -14,7 +14,6 @@ import java.awt.*;
  */
 
 public class Bank {
-
     String[] ownedFields = {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""};
     private int[] fieldPrice = {0, 1200, 0, 1200, 0, 2000, 2000, 0, 2000, 2400, 0, 2800, 3000, 2800, 3200, 4000, 3600, 0, 3600, 4000, 0, 4400, 0, 4400, 4800, 4000, 5200, 5200, 3000, 5600, 0, 6000, 6000, 0, 6400, 4000, 0, 7000, 0, 8000};
     private int[] fieldRent = {0, 50, 0, 50, 0, 0, 100, 0, 100, 150, 0, 200, 0, 200, 250, 500, 300, 0, 300, 350, 0, 350, 0, 350, 400, 0, 450, 450, 0, 500, 0, 550, 550, 0, 600, 500, 0, 700, 0, 1000};
@@ -97,6 +96,7 @@ public class Bank {
         }
     }
 
+    // When a player first buys a field or lands on a field they own, they get asked whether they would like to buy some houses and hotels to that field
     public void buyHouses(int playerIndex, GUI gui) {
         int placement = playerManager.getPlayer(playerIndex).getFieldPosition();
         int price = fieldPrice[placement] / 4;
@@ -154,7 +154,7 @@ public class Bank {
         }
     }
 
-
+    // To prevent a player from going bankrupt while they still own fields, their fields are automatically sold to ensure the player's balance doesn't go below 0
     public void auctionField(int playerIndex, GUI gui) {
         String name = playerManager.getPlayerName(playerIndex);
         for (int i = 0; i < ownedFields.length && playerManager.getPlayerBalance(playerIndex) == 0; i++) {

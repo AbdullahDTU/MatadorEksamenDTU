@@ -2,8 +2,6 @@ package mainGame;
 
 
 import gui_fields.*;
-import gui_resources.Attrs;
-
 import java.awt.*;
 
 /**
@@ -13,7 +11,7 @@ import java.awt.*;
  */
 
 public class Board {
-    //Constructing fields of type Street, Chance, Jail and Parking
+    // Constructing fields of type Street, Chance, Jail and Parking
     // Field Name, Field Subtext, Field Description, Rent.
     private static final GUI_Field field1 = new GUI_Start(
             "START", "Collect kr. 3.000",
@@ -255,9 +253,9 @@ public class Board {
             field38,
             field39,
             field40,
-
     };
 
+    // Method to return fields
     public static GUI_Field[] getFields() {
         return fields;
     }

@@ -7,8 +7,6 @@ import players.PlayerManager;
 
 /**
  *
- *
- *
  */
 
 public class CardTemplate {

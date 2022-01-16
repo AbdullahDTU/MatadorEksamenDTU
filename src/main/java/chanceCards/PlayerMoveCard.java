@@ -20,6 +20,7 @@ public class PlayerMoveCard extends Card {
         this.newPlayerPosition = newPlayerPosition;
     }
 
+    // Moves amount of squares or to a specific position that is decided by the drawn chance card
     @Override
     void drawCard(Player player, GUI gui) {
         player.setFieldPosition(newPlayerPosition);

@@ -19,17 +19,19 @@ import static mainGame.Setup.START_MONEY;
 public class PlayerManager {
     private final GUI gui;
 
-    //Arrays for player objects and player names
+    // Arrays for player objects and player names
     public Player[] players;
     public String[] playerNames;
     private final String[] playerOrderText = {"first player's name", "second player's name", "third player's name", "fourth player's name"};
 
+    // Constructor for PlayerManager
     public PlayerManager(GUI gui, int playerAmount) {
         this.gui = gui;
         this.players = new Player[playerAmount];
         this.playerNames = new String[playerAmount];
     }
 
+    // Method to get and add each inserted player name into the game
     public void getPlayerNames() {
         //For loop to add each inserted player name into the game
         for (int currentPlayer = 0; currentPlayer < players.length; currentPlayer++) {

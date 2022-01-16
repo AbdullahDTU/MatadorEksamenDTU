@@ -6,14 +6,12 @@ import java.awt.*;
 
 /**
  *
- *
- *
  */
 
 public class Main {
 
     public static void main(String[] args) {
-        //Initializes GUI with the fields from Board as input. And then a color for the background
+        //Initializes the GUI with the fields from Board as input. And then a color for the background
         GUI gui = new GUI(Board.getFields(), new Color(252, 229, 229));
 
         //Shows a welcome message at the start of the game
@@ -23,7 +21,7 @@ public class Main {
         Setup setup = new Setup(gui);
         Game game = new Game(gui, setup.getpM(), setup.getdK());
 
-        //Initializes and runs Board + game
+        //Initializes and runs Setup + Game
         setup.startSetupMethods();
         game.startGame();
     }
